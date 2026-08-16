@@ -706,7 +706,24 @@ img {
     margin-top: 0;
     margin-bottom: 24px;
 }
+.profile-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 
+    margin-top: 30px;
+}
+
+.profile-skills span {
+    padding: 7px 10px;
+
+    border: 1px solid var(--line);
+
+    color: var(--navy);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+}
 
 /* =========================================================
    OUTILS
