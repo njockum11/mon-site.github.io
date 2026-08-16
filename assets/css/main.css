@@ -877,6 +877,10 @@ img {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+
+   .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
 }
 
 
@@ -960,14 +964,15 @@ img {
         border-bottom: 1px solid var(--line);
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
+ .projects-grid {
+    grid-template-columns: 1fr;
+}
     .project-filters {
         gap: 6px;
     }
-
+.project-image {
+    height: 260px;
+}
     .footer-content {
         flex-direction: column;
         gap: 8px;
