@@ -267,8 +267,8 @@ img { max-width: 100%; display: block; }
 .skill-card:first-child { border-left: 1px solid var(--line); }
 
 .skill-icon {
-    width: 18px;
-    height: 18px;
+    width: 5px;
+    height: 5px;
     display: inline-grid;
     place-items: center;
     color: var(--blue);
