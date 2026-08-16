@@ -137,11 +137,17 @@ img { max-width: 100%; display: block; }
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, rgba(7,26,45,.97) 0%, rgba(7,26,45,.84) 38%, rgba(7,26,45,.34) 72%, rgba(7,26,45,.78) 100%),
-        url("../images/hero-evenement-tourisme.png") center right / cover no-repeat;
+        linear-gradient(
+            90deg,
+            rgba(7,26,45,.97) 0%,
+            rgba(7,26,45,.84) 38%,
+            rgba(7,26,45,.34) 72%,
+            rgba(7,26,45,.78) 100%
+        ),
+        url("../../images/hero-evenement-tourisme.png")
+        center right / cover no-repeat;
     opacity: .92;
 }
-
 .hero-bg::after {
     content: "";
     position: absolute;
