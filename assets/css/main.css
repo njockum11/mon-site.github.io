@@ -266,26 +266,6 @@ img { max-width: 100%; display: block; }
 
 .skill-card:first-child { border-left: 1px solid var(--line); }
 
-.skill-icon {
-    width: 5px;
-    height: 5px;
-    display: inline-grid;
-    place-items: center;
-    color: var(--blue);
-    border: 1px solid rgba(47, 140, 255, .28);
-    border-radius: 9px;
-    background: rgba(47, 140, 255, .06);
-}
-
-.skill-icon svg {
-    width: 5px;
-    height: 5px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
 
 .skill-card h2 {
     margin: 13px 0 8px;
