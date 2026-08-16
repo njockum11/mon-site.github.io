@@ -1,51 +1,97 @@
-/*
-	Halcyonic by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+document.addEventListener("DOMContentLoaded", () => {
 
-(function($) {
+    /* =========================
+       MENU MOBILE
+    ========================= */
 
-	var $window = $(window),
-		$body = $('body');
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:  [ '1281px',  '1680px' ],
-			large:   [ '981px',   '1280px' ],
-			medium:  [ '737px',   '980px'  ],
-			small:   [ null,      '736px'  ]
-		});
+    if (menuToggle && mainNav) {
 
-	// Nav.
+        menuToggle.addEventListener("click", () => {
 
-		// Title Bar.
-			$(
-				'<div id="titleBar">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
-				.appendTo($body);
+            const isOpen =
+                mainNav.classList.toggle("is-open");
 
-		// Panel.
-			$(
-				'<div id="navPanel">' +
-					'<nav>' +
-						$('#nav').navList() +
-					'</nav>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'navPanel-visible'
-				});
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
 
-})(jQuery);
+        });
+
+        mainNav.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+
+                mainNav.classList.remove("is-open");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            });
+
+        });
+    }
+
+
+    /* =========================
+       FILTRES DES RÉALISATIONS
+    ========================= */
+
+    const filterButtons =
+        document.querySelectorAll(".filter-button");
+
+    const projectCards =
+        document.querySelectorAll(".project-card");
+
+    filterButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const filter = button.dataset.filter;
+
+            filterButtons.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            projectCards.forEach(card => {
+
+                const category = card.dataset.category;
+
+                if (
+                    filter === "all" ||
+                    category === filter
+                ) {
+                    card.classList.remove("is-hidden");
+                } else {
+                    card.classList.add("is-hidden");
+                }
+
+            });
+
+        });
+
+    });
+
+
+    /* =========================
+       LIENS PROVISOIRES
+    ========================= */
+
+    document.querySelectorAll(
+        '.project-link[href="#"]'
+    ).forEach(link => {
+
+        link.addEventListener("click", event => {
+            event.preventDefault();
+        });
+
+    });
+
+});
