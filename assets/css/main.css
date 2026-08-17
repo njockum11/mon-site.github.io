@@ -262,18 +262,18 @@ img { max-width: 100%; display: block; }
 }
 
 .skill-card {
-    min-height: 220px;
-    padding: 26px 22px 24px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    min-height: 210px;
+    padding: 28px 24px;
+    background: var(--white);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(7,26,45,.06);
 
     display: flex;
     flex-direction: column;
 }
 
-.skill-card:first-child {
-    border-left: 1px solid var(--line);
-}
+
 
 .skill-icon-placeholder {
     width: 38px;
