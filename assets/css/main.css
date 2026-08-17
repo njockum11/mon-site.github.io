@@ -201,7 +201,7 @@ img { max-width: 100%; display: block; }
     justify-content: center;
     min-height: 46px;
     padding: 0 19px;
-    border-radius: 7px;
+    border-radius: 30px;
     font-size: .8rem;
     font-weight: 750;
     letter-spacing: .025em;
