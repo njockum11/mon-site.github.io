@@ -134,15 +134,18 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
     background:
         linear-gradient(
             90deg,
             rgba(7,26,45,.97),
             rgba(7,26,45,.45)
         ),
-        url("../images/hero-evenement-tourisme.png") center right / cover no-repeat;
+        url("/images/hero-evenement-tourisme.png") center right / cover no-repeat;
 }
-
 .hero-bg::after {
     content: "";
     position: absolute;
@@ -331,13 +334,16 @@ img { max-width: 100%; display: block; }
     gap: 22px;
 }
 
-..project-card {
+.project-card {
     background: var(--white);
     border: none;
-    border-radius: 22px;
+    border-radius: 22px !important;
     overflow: hidden;
     box-shadow: 0 12px 35px rgba(7,26,45,.08);
     transition: transform .25s ease, box-shadow .25s ease;
+}
+.project-card .project-image {
+    border-radius: 22px 22px 0 0;
 }
 
 .project-card:hover {
