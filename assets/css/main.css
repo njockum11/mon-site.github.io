@@ -332,12 +332,13 @@ img { max-width: 100%; display: block; }
     gap: 22px;
 }
 
-.project-card {
-    background: var(--cream);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
+..project-card {
+    background: var(--white);
+    border: none;
+    border-radius: 22px;
     overflow: hidden;
-    transition: transform .22s ease, box-shadow .22s ease;
+    box-shadow: 0 12px 35px rgba(7,26,45,.08);
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .project-card:hover {
