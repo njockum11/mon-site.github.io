@@ -140,7 +140,7 @@ img { max-width: 100%; display: block; }
             rgba(7,26,45,.97),
             rgba(7,26,45,.45)
         ),
-        url("../../images/hero-evenement-tourisme.png") center right / cover no-repeat;
+        url("../images/hero-evenement-tourisme.png") center right / cover no-repeat;
 }
 
 .hero-bg::after {
