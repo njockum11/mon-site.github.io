@@ -14,6 +14,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
           rel="stylesheet">
+
+<style>
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.skill-card{background:var(--white);border-radius:18px;padding:18px 20px 20px;box-shadow:0 10px 28px rgba(7,26,45,.07);overflow:hidden}
+.skill-editorial{width:100%;height:92px;object-fit:cover;display:block;margin:-18px 0 17px;border-radius:18px 18px 0 0}
+.skill-card h2{margin:0 0 9px;font-size:20px;line-height:1.2}
+.skill-card p{margin:0;font-size:14px;line-height:1.5}
+.project-card>.project-image{display:block;position:relative;width:100%;height:220px;overflow:hidden}
+.project-card>.project-image img{width:100%;height:100%;object-fit:cover;display:block}
+.project-info>.project-image{display:none}
+@media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.skills-grid{grid-template-columns:1fr}.skill-editorial{height:110px}}
+</style>
 </head>
 
 <body>
@@ -79,30 +92,12 @@
 <section class="skills-intro">
     <div class="container">
         <p class="eyebrow">SAVOIR-FAIRE</p>
-
         <div class="skills-grid">
-
-    <article class="skill-card">
-        <h2>Communication</h2>
-        <p>Supports, messages et déclinaisons adaptés aux publics et aux contextes.</p>
-    </article>
-
-    <article class="skill-card">
-        <h2>Vidéo</h2>
-        <p>Montage, rythme, habillage et adaptation des contenus aux formats digitaux.</p>
-    </article>
-
-    <article class="skill-card">
-        <h2>Motion Design</h2>
-        <p>Animation graphique pour renforcer la compréhension et l’impact visuel.</p>
-    </article>
-
-    <article class="skill-card">
-        <h2>Création visuelle</h2>
-        <p>Graphisme, mise en page, 3D et exploration des outils de création assistée par IA.</p>
-    </article>
-
-</div>
+            <article class="skill-card"><img class="skill-editorial" src="images/editorial-communication.svg" alt="Composition éditoriale représentant des supports de communication" loading="lazy"><h2>Communication</h2><p>Supports, messages et déclinaisons adaptés aux publics et aux contextes.</p></article>
+            <article class="skill-card"><img class="skill-editorial" src="images/editorial-video.svg" alt="Composition éditoriale représentant le montage vidéo" loading="lazy"><h2>Vidéo</h2><p>Montage, rythme, habillage et adaptation des contenus aux formats digitaux.</p></article>
+            <article class="skill-card"><img class="skill-editorial" src="images/editorial-motion.svg" alt="Composition éditoriale représentant l’animation graphique" loading="lazy"><h2>Motion Design</h2><p>Animation graphique pour renforcer la compréhension et l’impact visuel.</p></article>
+            <article class="skill-card"><img class="skill-editorial" src="images/editorial-creation.svg" alt="Composition éditoriale représentant la création visuelle" loading="lazy"><h2>Création visuelle</h2><p>Graphisme, mise en page, 3D et exploration des outils de création assistée par IA.</p></article>
+        </div>
     </div>
 </section>
 
@@ -131,10 +126,7 @@
                     <p class="project-type">Communication digitale</p>
                     <h3>Mediastar Publicité</h3>
                     <p>Conception et réalisation d’un site web professionnel.</p>
-                   <a href="https://www.mediastar-publicite.com/" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le site Mediastar Publicité">
-    <img src="images/vignette-mediastar.png" alt="Aperçu du site Mediastar Publicité" loading="lazy">
-    <span class="project-preview-label">WEB</span>
-</a>
+                    <a href="https://www.mediastar-publicite.com/" class="project-link" target="_blank" rel="noopener">Voir le site →</a>
                 </div>
             </article>
 
@@ -151,11 +143,7 @@
                     <p class="project-type">Teaser · Événementiel</p>
                     <h3>Jazz à Saint-Rémy</h3>
                     <p>Teaser audiovisuel et déclinaisons pour différents formats.</p>
-                <a href="https://canva.link/2lx4kxxugh7seoc" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le projet Jazz à Saint-Rémy">
-    <img src="images/vignette-jazz-saint-remy.png" alt="Aperçu du projet Jazz à Saint-Rémy" loading="lazy">
-    <span class="play-badge">▶</span>
-    <span class="project-preview-label">VIDÉO</span>
-</a>
+                    <a href="https://canva.link/2lx4kxxugh7seoc" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
                 </div>
             </article>
 
@@ -190,11 +178,7 @@
                     <p class="project-type">Animation · Social media</p>
                     <h3>Affiches de théâtre animées</h3>
                     <p>Animation de supports destinés aux réseaux sociaux.</p>
-                   <a href="https://canva.link/5mqillr3mwjyscj" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir les affiches de théâtre animées">
-    <img src="images/vignette-affiches-theatre.png" alt="Aperçu des affiches de théâtre et de leur animation" loading="lazy">
-    <span class="play-badge">▶</span>
-    <span class="project-preview-label">MOTION</span>
-</a>
+                    <a href="https://canva.link/5mqillr3mwjyscj" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
                 </div>
             </article>
 
@@ -248,12 +232,8 @@
                 <div class="project-info">
                     <p class="project-type">Communication institutionnelle</p>
                     <h3>Ville du Cannet</h3>
-                    <p>Contenu audiovisuel destiné à valoriser la ville du Cannet</p>
-                  <a href="https://canva.link/6xvo3tm8rayd4ie" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le projet Ville du Cannet">
-    <img src="images/vignette-ville-cannet.png" alt="Aperçu du projet audiovisuel pour la Ville du Cannet" loading="lazy">
-    <span class="play-badge">▶</span>
-    <span class="project-preview-label">FILM</span>
-</a>
+                    <p>Contenu audiovisuel destiné à valoriser la ville du Cannet.</p>
+                    <a href="https://canva.link/6xvo3tm8rayd4ie" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
                 </div>
             </article>
 
