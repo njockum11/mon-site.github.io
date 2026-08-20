@@ -791,4 +791,19 @@ img { max-width: 100%; display: block; }
         transition: none !important;
         animation: none !important;
     }
+
+   /* =========================================================
+   PARALLAX — BANNÈRE + CARTES SAVOIR-FAIRE
+========================================================= */
+
+.hero {
+    perspective: 1000px;
+}
+
+.hero-bg {
+    transform: translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0)
+               scale(1.04);
+    transition: transform .12s ease-out;
+    will-change: transform;
+}
 }
