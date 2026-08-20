@@ -806,4 +806,18 @@ img { max-width: 100%; display: block; }
     transition: transform .12s ease-out;
     will-change: transform;
 }
+   .skill-card {
+    --card-x: 0px;
+    --card-y: 0px;
+
+    transform: translate3d(var(--card-x), var(--card-y), 0);
+    transition:
+        transform .15s ease-out,
+        box-shadow .25s ease;
+    will-change: transform;
+}
+
+.skill-card:hover {
+    box-shadow: 0 16px 38px rgba(7,26,45,.11);
+}
 }
