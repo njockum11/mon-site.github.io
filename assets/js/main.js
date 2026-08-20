@@ -103,3 +103,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+/* =========================================================
+   PARALLAX SOURIS — HERO + SAVOIR-FAIRE
+========================================================= */
+
+(() => {
+    const hero = document.querySelector(".hero");
+    const heroBg = document.querySelector(".hero-bg");
+    const skillCards = document.querySelectorAll(".skill-card");
+
+    if (!hero && !skillCards.length) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener("mousemove", (event) => {
+        mouseX = (event.clientX / window.innerWidth - 0.5);
+        mouseY = (event.clientY / window.innerHeight - 0.5);
+
+        /* Bannière */
+        if (heroBg) {
+            heroBg.style.setProperty(
+                "--parallax-x",
+                `${mouseX * 10}px`
+            );
+
+            heroBg.style.setProperty(
+                "--parallax-y",
+                `${mouseY * 7}px`
+            );
+        }
+
+        /* Cartes savoir-faire */
+        skillCards.forEach((card, index) => {
+            const intensity = index % 2 === 0 ? 5 : 3;
+
+            card.style.setProperty(
+                "--card-x",
+                `${mouseX * intensity}px`
+            );
+
+            card.style.setProperty(
+                "--card-y",
+                `${mouseY * intensity}px`
+            );
+        });
+    });
+
+    /* Retour à la position neutre lorsque la souris quitte la fenêtre */
+    document.addEventListener("mouseleave", () => {
+        if (heroBg) {
+            heroBg.style.setProperty("--parallax-x", "0px");
+            heroBg.style.setProperty("--parallax-y", "0px");
+        }
+
+        skillCards.forEach((card) => {
+            card.style.setProperty("--card-x", "0px");
+            card.style.setProperty("--card-y", "0px");
+        });
+    });
+})();
