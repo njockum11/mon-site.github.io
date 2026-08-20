@@ -791,7 +791,7 @@ img { max-width: 100%; display: block; }
         transition: none !important;
         animation: none !important;
     }
-
+}
    /* =========================================================
    PARALLAX — BANNÈRE + CARTES SAVOIR-FAIRE
 ========================================================= */
@@ -820,4 +820,4 @@ img { max-width: 100%; display: block; }
 .skill-card:hover {
     box-shadow: 0 16px 38px rgba(7,26,45,.11);
 }
-}
+
