@@ -73,6 +73,37 @@
 }
 </style>
 
+
+<style>
+/* MICRO-PARALLAX — mouvement très léger au passage de la souris */
+.project-card, .skill-card {
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    translate: var(--parallax-x) var(--parallax-y);
+    will-change: translate;
+}
+.hero-bg {
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    translate: var(--parallax-x) var(--parallax-y);
+    will-change: translate;
+}
+@media (hover: hover) and (pointer: fine) {
+    .project-card, .skill-card {
+        transition: translate .18s ease-out, box-shadow .25s ease, transform .25s ease;
+    }
+    .hero-bg {
+        transition: translate .25s ease-out;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .project-card, .skill-card, .hero-bg {
+        translate: none !important;
+        transition: none !important;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -414,5 +445,52 @@
 </div>
 
 <script src="assets/js/main.js"></script>
+<script>
+/* Micro-parallax inspiré des interactions éditoriales modernes :
+   déplacement volontairement faible pour rester professionnel. */
+(() => {
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!finePointer.matches || reducedMotion.matches) return;
+
+    const targets = [
+        ...document.querySelectorAll('.project-card, .skill-card'),
+        document.querySelector('.hero-bg')
+    ].filter(Boolean);
+
+    let pointerX = 0.5, pointerY = 0.5;
+    let raf = null;
+
+    const render = () => {
+        raf = null;
+        targets.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const distanceX = (pointerX * window.innerWidth - cx) / (window.innerWidth / 2);
+            const distanceY = (pointerY * window.innerHeight - cy) / (window.innerHeight / 2);
+            const strength = el.classList.contains('hero-bg') ? 7 : (el.classList.contains('skill-card') ? 3 : 4);
+            const x = Math.max(-strength, Math.min(strength, distanceX * strength));
+            const y = Math.max(-strength, Math.min(strength, distanceY * strength));
+            el.style.setProperty('--parallax-x', x.toFixed(2) + 'px');
+            el.style.setProperty('--parallax-y', y.toFixed(2) + 'px');
+        });
+    };
+
+    window.addEventListener('pointermove', e => {
+        pointerX = e.clientX / window.innerWidth;
+        pointerY = e.clientY / window.innerHeight;
+        if (!raf) raf = requestAnimationFrame(render);
+    }, { passive: true });
+
+    window.addEventListener('pointerleave', () => {
+        targets.forEach(el => {
+            el.style.setProperty('--parallax-x', '0px');
+            el.style.setProperty('--parallax-y', '0px');
+        });
+    });
+})();
+</script>
+
 </body>
 </html>
