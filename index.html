@@ -1,496 +1,165 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Stéphane Njockum — Communication digitale</title>
-    <meta name="description"
-          content="Portfolio de Stéphane Njockum — communication digitale, création de contenus, audiovisuel et communication événementielle.">
-
-    <link rel="stylesheet" href="assets/css/main.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
-          rel="stylesheet">
-
-<style>
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
-.skill-card{background:var(--white);border-radius:18px;padding:18px 20px 20px;box-shadow:0 10px 28px rgba(7,26,45,.07);overflow:hidden}
-.skill-editorial{width:100%;height:92px;object-fit:cover;display:block;margin:-18px 0 17px;border-radius:18px 18px 0 0}
-.skill-card h2{margin:0 0 9px;font-size:20px;line-height:1.2}
-.skill-card p{margin:0;font-size:14px;line-height:1.5}
-.project-card>.project-image{display:block;position:relative;width:100%;height:220px;overflow:hidden}
-.project-card>.project-image img{width:100%;height:100%;object-fit:cover;display:block}
-.project-info>.project-image{display:none}
-@media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.skills-grid{grid-template-columns:1fr}.skill-editorial{height:110px}}
-</style>
-
-<style>
-/* PREVIEWS PNG — une seule vignette dans chaque carte */
-.project-card > .project-image{
-    display:block;
-    position:relative;
-    width:100%;
-    height:220px;
-    overflow:hidden;
-    border-radius:22px 22px 0 0;
-    padding:0;
-    margin:0;
-    border:0;
-    text-decoration:none;
-}
-.project-card > .project-image img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    margin:0;
-}
-.project-card > .project-image::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    background:linear-gradient(to top,rgba(7,26,45,.16),transparent 45%);
-}
-.project-info > .project-image{display:none !important}
-
-/* Cartes savoir-faire compactes + visuel éditorial */
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
-.skill-card{background:var(--white);border-radius:18px;padding:18px 20px 20px;box-shadow:0 10px 28px rgba(7,26,45,.07);overflow:hidden}
-.skill-editorial{width:100%;height:92px;object-fit:cover;display:block;margin:-18px 0 17px;border-radius:18px 18px 0 0}
-.skill-card h2{margin:0 0 9px;font-size:20px;line-height:1.2}
-.skill-card p{margin:0;font-size:14px;line-height:1.5}
-
-@media(max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){
-    .skills-grid{grid-template-columns:1fr}
-    .skill-editorial{height:110px}
-    .project-card > .project-image{height:200px}
-}
-</style>
-
-
-<style>
-/* MICRO-PARALLAX — mouvement très léger au passage de la souris */
-.project-card, .skill-card {
-    --parallax-x: 0px;
-    --parallax-y: 0px;
-    translate: var(--parallax-x) var(--parallax-y);
-    will-change: translate;
-}
-.hero-bg {
-    --parallax-x: 0px;
-    --parallax-y: 0px;
-    translate: var(--parallax-x) var(--parallax-y);
-    will-change: translate;
-}
-@media (hover: hover) and (pointer: fine) {
-    .project-card, .skill-card {
-        transition: translate .18s ease-out, box-shadow .25s ease, transform .25s ease;
-    }
-    .hero-bg {
-        transition: translate .25s ease-out;
-    }
-}
-@media (prefers-reduced-motion: reduce) {
-    .project-card, .skill-card, .hero-bg {
-        translate: none !important;
-        transition: none !important;
-    }
-}
-</style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stéphane Njockum — Communication digitale</title>
+<meta name="description" content="Portfolio de Stéphane Njockum — communication digitale, création de contenus, audiovisuel et communication événementielle.">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
 <header class="site-header">
-    <div class="container nav-container">
-
-        <a href="#accueil" class="brand" aria-label="Accueil">
-            <span class="brand-name">STÉPHANE NJOCKUM</span>
-            <span class="brand-role">Communication digitale</span>
-        </a>
-
-        <button class="menu-toggle"
-                type="button"
-                aria-label="Ouvrir le menu"
-                aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-
-        <nav class="main-nav" aria-label="Navigation principale">
-            <a href="#realisations">Réalisations</a>
-            <a href="#profil">Profil</a>
-            <a href="#contact">Contact</a>
-            <a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link"
-               class="nav-cv" target="_blank" rel="noopener">CV ↗</a>
-        </nav>
-
-    </div>
+<div class="container nav-container">
+<a href="#accueil" class="brand" aria-label="Accueil">
+<span class="brand-name">STÉPHANE NJOCKUM</span>
+<span class="brand-role">Communication digitale</span>
+</a>
+<button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<nav class="main-nav" aria-label="Navigation principale">
+<a href="#realisations">Réalisations</a><a href="#profil">Profil</a><a href="#contact">Contact</a>
+<a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link" class="nav-cv" target="_blank" rel="noopener">CV ↗</a>
+</nav>
+</div>
 </header>
 
 <main>
-
 <section id="accueil" class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-
-    <div class="container hero-inner">
-        <div class="hero-content">
-
-            <p class="eyebrow">COMMUNICATION DIGITALE · CRÉATION DE CONTENUS</p>
-
-            <h1>
-                Des messages clairs<br>
-                Des expériences qui marquent<span></span>
-            </h1>
-
-            <p class="hero-text">
-                Profil hybride entre communication, création de contenus et expérience de terrain.
-                Je développe aujourd’hui mes compétences en communication digitale, création visuelle,
-                audiovisuel et stratégie de contenus.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#realisations" class="button button-primary">Voir les réalisations</a>
-                <a href="#profil" class="button button-secondary">Mon profil</a>
-            </div>
-        </div>
-
-     
-    </div>
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="container hero-inner">
+<div class="hero-content">
+<p class="eyebrow">COMMUNICATION DIGITALE · CRÉATION DE CONTENUS</p>
+<h1>Des messages clairs<br>Des expériences qui marquent<span></span></h1>
+<p class="hero-text">Profil hybride entre communication, création de contenus et expérience de terrain. Je développe aujourd’hui mes compétences en communication digitale, création visuelle, audiovisuel et stratégie de contenus.</p>
+<div class="hero-actions">
+<a href="#realisations" class="button button-primary">Voir les réalisations</a>
+<a href="#profil" class="button button-secondary">Mon profil</a>
+</div>
+</div>
+</div>
 </section>
-
 
 <section class="skills-intro">
-    <div class="container">
-        <p class="eyebrow">SAVOIR-FAIRE</p>
-        <div class="skills-grid">
-            <article class="skill-card"><img class="skill-editorial" src="images/editorial-communication.svg" alt="Composition éditoriale représentant des supports de communication" loading="lazy"><h2>Communication</h2><p>Supports, messages et déclinaisons adaptés aux publics et aux contextes.</p></article>
-            <article class="skill-card"><img class="skill-editorial" src="images/editorial-video.svg" alt="Composition éditoriale représentant le montage vidéo" loading="lazy"><h2>Vidéo</h2><p>Montage, rythme, habillage et adaptation des contenus aux formats digitaux.</p></article>
-            <article class="skill-card"><img class="skill-editorial" src="images/editorial-motion.svg" alt="Composition éditoriale représentant l’animation graphique" loading="lazy"><h2>Motion Design</h2><p>Animation graphique pour renforcer la compréhension et l’impact visuel.</p></article>
-            <article class="skill-card"><img class="skill-editorial" src="images/editorial-creation.svg" alt="Composition éditoriale représentant la création visuelle" loading="lazy"><h2>Création visuelle</h2><p>Graphisme, mise en page, 3D et exploration des outils de création assistée par IA.</p></article>
-        </div>
-    </div>
+<div class="container">
+<p class="eyebrow">SAVOIR-FAIRE</p>
+<div class="skills-grid">
+<article class="skill-card"><img class="skill-editorial" src="images/editorial-communication.svg" alt="Composition éditoriale représentant des supports de communication" loading="lazy"><h2>Communication</h2><p>Supports, messages et déclinaisons adaptés aux publics et aux contextes.</p></article>
+<article class="skill-card"><img class="skill-editorial" src="images/editorial-video.svg" alt="Composition éditoriale représentant le montage vidéo" loading="lazy"><h2>Vidéo</h2><p>Montage, rythme, habillage et adaptation des contenus aux formats digitaux.</p></article>
+<article class="skill-card"><img class="skill-editorial" src="images/editorial-motion.svg" alt="Composition éditoriale représentant l’animation graphique" loading="lazy"><h2>Motion Design</h2><p>Animation graphique pour renforcer la compréhension et l’impact visuel.</p></article>
+<article class="skill-card"><img class="skill-editorial" src="images/editorial-creation.svg" alt="Composition éditoriale représentant la création visuelle" loading="lazy"><h2>Création visuelle</h2><p>Graphisme, mise en page, 3D et exploration des outils de création assistée par IA.</p></article>
+</div>
+</div>
 </section>
-
 
 <section id="realisations" class="projects-section">
-    <div class="container">
+<div class="container">
+<div class="section-heading">
+<div><h2>Réalisations</h2></div>
+<p>Une sélection de projets en communication, création visuelle, audiovisuel et événementiel.</p>
+</div>
 
-        <div class="section-heading">
-            <div>
-                <h2>Réalisations</h2>
-            </div>
-            <p>
-                Une sélection de projets en communication, création visuelle,
-                audiovisuel et événementiel.
-            </p>
-        </div>
+<div class="projects-carousel" aria-label="Carrousel des réalisations">
+<button class="carousel-button carousel-prev" type="button" aria-label="Projet précédent">‹</button>
+<div class="projects-track">
 
-        <div class="projects-grid">
+<article class="project-card">
+<a href="https://www.mediastar-publicite.com/" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le site Mediastar Publicité">
+<img src="images/vignette-mediastar.png" alt="Aperçu du site Mediastar Publicité" loading="lazy"><span class="project-preview-label">WEB</span>
+</a>
+<div class="project-info"><p class="project-type">Communication digitale</p><h3>Mediastar Publicité</h3><p>Conception et réalisation d’un site web professionnel.</p><a href="https://www.mediastar-publicite.com/" class="project-link" target="_blank" rel="noopener">Voir le site →</a></div>
+</article>
 
-            <article class="project-card">
-                <a href="https://www.mediastar-publicite.com/"
-                   class="project-image project-preview-link"
-                   target="_blank" rel="noopener"
-                   aria-label="Voir le site Mediastar Publicité">
-                    <!-- PNG PREVIEW : placer le fichier dans /images/vignette-mediastar.png -->
-                    <img src="images/vignette-mediastar.png"
-                         alt="Aperçu du site Mediastar Publicité"
-                         loading="lazy">
-                    <span class="project-preview-label">WEB</span>
-                </a>
-                <div class="project-info">
-                    <p class="project-type">Communication digitale</p>
-                    <h3>Mediastar Publicité</h3>
-                    <p>Conception et réalisation d’un site web professionnel.</p>
-                    <a href="https://www.mediastar-publicite.com/" class="project-link" target="_blank" rel="noopener">Voir le site →</a>
-                </div>
-            </article>
+<article class="project-card">
+<a href="https://canva.link/2lx4kxxugh7seoc" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le projet Jazz à Saint-Rémy">
+<img src="images/vignette-jazz-saint-remy.png" alt="Aperçu du projet Jazz à Saint-Rémy" loading="lazy"><span class="play-badge">▶</span><span class="project-preview-label">VIDÉO</span>
+</a>
+<div class="project-info"><p class="project-type">Teaser · Événementiel</p><h3>Jazz à Saint-Rémy</h3><p>Teaser audiovisuel et déclinaisons pour différents formats.</p><a href="https://canva.link/2lx4kxxugh7seoc" class="project-link" target="_blank" rel="noopener">Voir le projet →</a></div>
+</article>
 
+<article class="project-card">
+<a href="images/Planche%20com%20festival%20Slam.png" class="project-image project-image-poster" target="_blank" rel="noopener" aria-label="Voir la planche de communication du Festival SlamSolidaire">
+<img src="images/Grande%20affiche%20festival%20slam.png" alt="Grande affiche du Festival SlamSolidaire">
+</a>
+<div class="project-info"><p class="project-type">Communication événementielle</p><h3>Festival SlamSolidaire</h3><p>Campagne événementielle et déclinaisons print.</p><a href="images/Planche%20com%20festival%20Slam.png" class="project-link" target="_blank" rel="noopener">Voir la planche →</a></div>
+</article>
 
-            <article class="project-card">
-                <a href="https://canva.link/2lx4kxxugh7seoc"
-                   class="project-image project-preview-link"
-                   target="_blank" rel="noopener"
-                   aria-label="Voir le projet Jazz à Saint-Rémy">
-                    <!-- PNG PREVIEW : placer le fichier dans /images/vignette-jazz-saint-remy.png -->
-                    <img src="images/vignette-jazz-saint-remy.png"
-                         alt="Aperçu du projet Jazz à Saint-Rémy"
-                         loading="lazy">
-                    <span class="play-badge">▶</span>
-                    <span class="project-preview-label">VIDÉO</span>
-                </a>
-                <div class="project-info">
-                    <p class="project-type">Teaser · Événementiel</p>
-                    <h3>Jazz à Saint-Rémy</h3>
-                    <p>Teaser audiovisuel et déclinaisons pour différents formats.</p>
-                    <a href="https://canva.link/2lx4kxxugh7seoc" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
-                </div>
-            </article>
+<article class="project-card">
+<a href="https://canva.link/5mqillr3mwjyscj" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir les affiches de théâtre animées">
+<img src="images/vignette-affiches-theatre.png" alt="Aperçu des affiches de théâtre animées" loading="lazy"><span class="play-badge">▶</span><span class="project-preview-label">MOTION</span>
+</a>
+<div class="project-info"><p class="project-type">Animation · Social media</p><h3>Affiches de théâtre animées</h3><p>Animation de supports destinés aux réseaux sociaux.</p><a href="https://canva.link/5mqillr3mwjyscj" class="project-link" target="_blank" rel="noopener">Voir le projet →</a></div>
+</article>
 
+<article class="project-card">
+<button class="project-image project-image-cannes youtube-preview" type="button" data-youtube="45iLTRKhXwo" data-title="Teaser Cannes" aria-label="Lire le teaser Cannes">
+<span class="play-badge">▶</span><span class="project-preview-label">VIDÉO</span>
+</button>
+<div class="project-info"><p class="project-type">Communication territoriale</p><h3>Teaser Cannes</h3><p>Teaser audiovisuel autour de la ville de Cannes.</p><button class="project-link project-link-button youtube-trigger" type="button" data-youtube="45iLTRKhXwo" data-title="Teaser Cannes">Voir la vidéo →</button></div>
+</article>
 
-            <article class="project-card">
-                <a href="images/Planche%20com%20festival%20Slam.png"
-                   class="project-image project-image-poster"
-                   target="_blank" rel="noopener"
-                   aria-label="Voir la planche de communication du Festival SlamSolidaire">
-                    <img src="images/Grande%20affiche%20festival%20slam.png"
-                         alt="Grande affiche du Festival SlamSolidaire">
-                </a>
-                <div class="project-info">
-                    <p class="project-type">Communication événementielle</p>
-                    <h3>Festival SlamSolidaire</h3>
-                    <p>Campagne événementielle et déclinaisons print.</p>
-                    <a href="images/Planche%20com%20festival%20Slam.png"
-                       class="project-link" target="_blank" rel="noopener">Voir la planche →</a>
-                </div>
-            </article>
+<article class="project-card">
+<button class="project-image project-image-institution youtube-preview" type="button" data-youtube="2KbTK1tdt0w" data-title="Lycée Calypso" aria-label="Lire le film du Lycée Calypso">
+<span class="play-badge">▶</span><span class="project-preview-label">FILM</span>
+</button>
+<div class="project-info"><p class="project-type">Communication institutionnelle</p><h3>Projet Calypso</h3><p>Film institutionnel destiné à valoriser l’établissement Lycée Hutinel pour un concours.</p><button class="project-link project-link-button youtube-trigger" type="button" data-youtube="2KbTK1tdt0w" data-title="Lycée Calypso">Voir le film →</button></div>
+</article>
 
+<article class="project-card">
+<a href="https://canva.link/6xvo3tm8rayd4ie" class="project-image project-preview-link" target="_blank" rel="noopener" aria-label="Voir le projet audiovisuel Ville du Cannet">
+<img src="images/vignette-ville-cannet.png" alt="Aperçu du projet audiovisuel pour la Ville du Cannet" loading="lazy"><span class="play-badge">▶</span><span class="project-preview-label">FILM</span>
+</a>
+<div class="project-info"><p class="project-type">Communication institutionnelle</p><h3>Ville du Cannet</h3><p>Contenu audiovisuel destiné à valoriser la ville du Cannet.</p><a href="https://canva.link/6xvo3tm8rayd4ie" class="project-link" target="_blank" rel="noopener">Voir le projet →</a></div>
+</article>
 
-            <article class="project-card">
-                <a href="https://canva.link/5mqillr3mwjyscj"
-                   class="project-image project-preview-link"
-                   target="_blank" rel="noopener"
-                   aria-label="Voir les affiches de théâtre animées">
-                    <!-- PNG PREVIEW : placer le fichier dans /images/vignette-affiches-theatre.png -->
-                    <img src="images/vignette-affiches-theatre.png"
-                         alt="Aperçu des affiches de théâtre animées"
-                         loading="lazy">
-                    <span class="play-badge">▶</span>
-                    <span class="project-preview-label">MOTION</span>
-                </a>
-                <div class="project-info">
-                    <p class="project-type">Animation · Social media</p>
-                    <h3>Affiches de théâtre animées</h3>
-                    <p>Animation de supports destinés aux réseaux sociaux.</p>
-                    <a href="https://canva.link/5mqillr3mwjyscj" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
-                </div>
-            </article>
-
-
-            <article class="project-card">
-                <button class="project-image project-image-cannes youtube-preview"
-                        type="button"
-                        data-youtube="45iLTRKhXwo"
-                        data-title="Teaser Cannes"
-                        aria-label="Lire le teaser Cannes">
-                    <span class="play-badge">▶</span>
-                    <span class="project-preview-label">VIDÉO</span>
-                </button>
-                <div class="project-info">
-                    <p class="project-type">Communication territoriale</p>
-                    <h3>Teaser Cannes</h3>
-                    <p>Teaser audiovisuel autour de la ville de Cannes.</p>
-                    <button class="project-link project-link-button youtube-trigger"
-                            type="button"
-                            data-youtube="45iLTRKhXwo"
-                            data-title="Teaser Cannes">Voir la vidéo →</button>
-                </div>
-            </article>
-
-
-            <article class="project-card">
-                <button class="project-image project-image-institution youtube-preview"
-                        type="button"
-                        data-youtube="2KbTK1tdt0w"
-                        data-title="Lycée Calypso"
-                        aria-label="Lire le film du Lycée Calypso">
-                    <span class="play-badge">▶</span>
-                    <span class="project-preview-label">FILM</span>
-                </button>
-                <div class="project-info">
-                    <p class="project-type">Communication institutionnelle</p>
-                    <h3>Projet Calypso</h3>
-                    <p>Film institutionnel destiné à valoriser l’établissement Lycée Hutinel pour un concours.</p>
-                    <button class="project-link project-link-button youtube-trigger"
-                            type="button"
-                            data-youtube="2KbTK1tdt0w"
-                            data-title="Lycée Calypso">Voir le film →</button>
-                </div>
-            </article>
-
-
-            <article class="project-card">
-                <a href="https://canva.link/6xvo3tm8rayd4ie"
-                   class="project-image project-preview-link"
-                   target="_blank" rel="noopener"
-                   aria-label="Voir le projet audiovisuel Ville du Cannet">
-                    <!-- PNG PREVIEW : placer le fichier dans /images/vignette-ville-cannet.png -->
-                    <img src="images/vignette-ville-cannet.png"
-                         alt="Aperçu du projet audiovisuel pour la Ville du Cannet"
-                         loading="lazy">
-                    <span class="play-badge">▶</span>
-                    <span class="project-preview-label">FILM</span>
-                </a>
-                <div class="project-info">
-                    <p class="project-type">Communication institutionnelle</p>
-                    <h3>Ville du Cannet</h3>
-                    <p>Contenu audiovisuel destiné à valoriser la ville du Cannet.</p>
-                    <a href="https://canva.link/6xvo3tm8rayd4ie" class="project-link" target="_blank" rel="noopener">Voir le projet →</a>
-                </div>
-            </article>
-
-        </div>
-    </div>
+</div>
+<button class="carousel-button carousel-next" type="button" aria-label="Projet suivant">›</button>
+</div>
+<div class="carousel-hint">Faites défiler les projets · ou utilisez les flèches</div>
+</div>
 </section>
-
 
 <section id="profil" class="profile-section">
-    <div class="container profile-grid">
-        <div>
-            <h2>Communication, contenu et terrain.</h2>
-        </div>
-
-        <div class="profile-text">
-            <p>
-                Professionnel de la communication terrain avec une expérience dans la diffusion
-                et la mise en œuvre de supports de communication, complétée par une expérience
-                en communication, gestion et création visuelle.
-            </p>
-
-            <p>
-                Je consolide aujourd’hui ce parcours par une formation en communication digitale,
-                avec l’objectif de développer mes compétences en stratégie de communication,
-                création de contenus et communication numérique.
-            </p>
-
-            <div class="profile-skills">
-                <span>Communication digitale</span>
-                <span>Création de contenus</span>
-                <span>Communication événementielle</span>
-                <span>Création graphique</span>
-                <span>Vidéo</span>
-                <span>Motion Design</span>
-                <span>Gestion de projet</span>
-            </div>
-        </div>
-    </div>
+<div class="container profile-grid">
+<div><h2>Communication, contenu et terrain.</h2></div>
+<div class="profile-text">
+<p>Professionnel de la communication terrain avec une expérience dans la diffusion et la mise en œuvre de supports de communication, complétée par une expérience en communication, gestion et création visuelle.</p>
+<p>Je consolide aujourd’hui ce parcours par une formation en communication digitale, avec l’objectif de développer mes compétences en stratégie de communication, création de contenus et communication numérique.</p>
+<div class="profile-skills"><span>Communication digitale</span><span>Création de contenus</span><span>Communication événementielle</span><span>Création graphique</span><span>Vidéo</span><span>Motion Design</span><span>Gestion de projet</span></div>
+</div>
+</div>
 </section>
-
 
 <section class="tools-section">
-    <div class="container">
-        <p class="eyebrow">ENVIRONNEMENT DE CRÉATION</p>
-        <div class="tools-list">
-            <span>Adobe Photoshop</span>
-            <span>Adobe Illustrator</span>
-            <span>Adobe InDesign</span>
-            <span>Adobe Premiere Pro</span>
-            <span>Adobe After Effects</span>
-            <span>DaVinci Resolve</span>
-            <span>Blender</span>
-            <span>Canva</span>
-            <span>WordPress</span>
-            <span>IA générative</span>
-        </div>
-    </div>
+<div class="container"><p class="eyebrow">ENVIRONNEMENT DE CRÉATION</p>
+<div class="tools-list"><span>Adobe Photoshop</span><span>Adobe Illustrator</span><span>Adobe InDesign</span><span>Adobe Premiere Pro</span><span>Adobe After Effects</span><span>DaVinci Resolve</span><span>Blender</span><span>Canva</span><span>WordPress</span><span>IA générative</span></div>
+</div>
 </section>
-
 
 <section id="contact" class="contact-section">
-    <div class="container contact-content">
-        <p class="eyebrow">CONTACT</p>
-        <h2>Un besoin ?</h2>
-        <p>Pour tout renseignement, proposition de stage, projet ou collaboration :</p>
-
-        <div class="contact-actions"><a href="mailto:njockum11@yahoo.fr?subject=Prise%20de%20contact%20professionnelle"
-   class="button button-light">
-    Me contacter
-</a>
-            <a href="tel:+33768992425" class="button button-outline-light">07 68 99 24 25</a>
-            <a href="https://www.linkedin.com/in/st%C3%A9phane-njockum-76b447222"
-               target="_blank" rel="noopener" class="button button-outline-light">LinkedIn ↗</a>
-            <a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link"
-               target="_blank" rel="noopener" class="button button-outline-light">CV ↗</a>
-        </div>
-    </div>
+<div class="container contact-content"><p class="eyebrow">CONTACT</p><h2>Un besoin ?</h2>
+<p>Pour tout renseignement, proposition de stage, projet ou collaboration :</p>
+<div class="contact-actions">
+<a href="mailto:njockum11@yahoo.fr?subject=Prise%20de%20contact%20professionnelle" class="button button-light">Me contacter</a>
+<a href="tel:+33768992425" class="button button-outline-light">07 68 99 24 25</a>
+<a href="https://www.linkedin.com/in/st%C3%A9phane-njockum-76b447222" target="_blank" rel="noopener" class="button button-outline-light">LinkedIn ↗</a>
+<a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link" target="_blank" rel="noopener" class="button button-outline-light">CV ↗</a>
+</div></div>
 </section>
-
 </main>
 
-<footer class="site-footer">
-    <div class="container footer-content">
-        <p>© 2026 Stéphane Njockum</p>
-        <p>Communication digitale · Création de contenus · Événementiel</p>
-    </div>
-</footer>
+<footer class="site-footer"><div class="container footer-content"><p>© 2026 Stéphane Njockum</p><p>Communication digitale · Création de contenus · Événementiel</p></div></footer>
 
-
-<!-- YouTube lightbox : l'iframe n'est créé qu'après clic -->
 <div class="video-modal" id="videoModal" aria-hidden="true">
-    <div class="video-modal-backdrop" data-close-video></div>
-
-    <div class="video-modal-dialog" role="dialog" aria-modal="true"
-         aria-labelledby="videoModalTitle">
-
-        <button class="video-modal-close" type="button"
-                aria-label="Fermer la vidéo" data-close-video>×</button>
-
-        <div class="video-frame">
-            <iframe id="youtubeFrame"
-                    title=""
-                    src=""
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-        </div>
-
-        <h2 id="videoModalTitle"></h2>
-    </div>
+<div class="video-modal-backdrop" data-close-video></div>
+<div class="video-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+<button class="video-modal-close" type="button" aria-label="Fermer la vidéo" data-close-video>×</button>
+<div class="video-frame"><iframe id="youtubeFrame" title="" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h2 id="videoModalTitle"></h2>
+</div>
 </div>
 
 <script src="assets/js/main.js"></script>
-<script>
-/* Micro-parallax inspiré des interactions éditoriales modernes :
-   déplacement volontairement faible pour rester professionnel. */
-(() => {
-    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!finePointer.matches || reducedMotion.matches) return;
-
-    const targets = [
-        ...document.querySelectorAll('.project-card, .skill-card'),
-        document.querySelector('.hero-bg')
-    ].filter(Boolean);
-
-    let pointerX = 0.5, pointerY = 0.5;
-    let raf = null;
-
-    const render = () => {
-        raf = null;
-        targets.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            const distanceX = (pointerX * window.innerWidth - cx) / (window.innerWidth / 2);
-            const distanceY = (pointerY * window.innerHeight - cy) / (window.innerHeight / 2);
-            const strength = el.classList.contains('hero-bg') ? 7 : (el.classList.contains('skill-card') ? 3 : 4);
-            const x = Math.max(-strength, Math.min(strength, distanceX * strength));
-            const y = Math.max(-strength, Math.min(strength, distanceY * strength));
-            el.style.setProperty('--parallax-x', x.toFixed(2) + 'px');
-            el.style.setProperty('--parallax-y', y.toFixed(2) + 'px');
-        });
-    };
-
-    window.addEventListener('pointermove', e => {
-        pointerX = e.clientX / window.innerWidth;
-        pointerY = e.clientY / window.innerHeight;
-        if (!raf) raf = requestAnimationFrame(render);
-    }, { passive: true });
-
-    window.addEventListener('pointerleave', () => {
-        targets.forEach(el => {
-            el.style.setProperty('--parallax-x', '0px');
-            el.style.setProperty('--parallax-y', '0px');
-        });
-    });
-})();
-</script>
-
 </body>
 </html>
