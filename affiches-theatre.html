@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Affiches de théâtre animées — Stéphane Njockum</title>
-<meta name="description" content="Projet de motion design : animation d'affiches de théâtre pour les réseaux sociaux.">
+<meta name="description" content="Projet de motion design : transformation d'affiches de théâtre en teasers vidéo pour les réseaux sociaux.">
 
 <link rel="stylesheet" href="assets/css/main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,17 +43,17 @@
     letter-spacing:-.05em;
 }
 
-.theatre-header p{
+.theatre-header p:not(.eyebrow){
     max-width:700px;
     margin:22px 0 0;
     color:var(--slate);
     font-size:1rem;
 }
 
-.theatre-grid{
+/* UNE CARTE = UNE AFFICHE + SA VIDÉO */
+.theatre-list{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:28px;
+    gap:34px;
 }
 
 .theatre-card{
@@ -61,51 +61,11 @@
     background:var(--white);
     border-radius:22px;
     box-shadow:0 12px 35px rgba(7,26,45,.08);
+    border:1px solid var(--line);
 }
 
-.theatre-poster{
-    position:relative;
-    aspect-ratio:16/10;
-    overflow:hidden;
-    background:#edf0f2;
-}
-
-.theatre-poster img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .35s ease;
-}
-
-.theatre-card:hover .theatre-poster img{
-    transform:scale(1.025);
-}
-
-.theatre-play{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:58px;
-    height:58px;
-    display:grid;
-    place-items:center;
-    border:1px solid rgba(255,255,255,.7);
-    border-radius:50%;
-    background:rgba(7,26,45,.55);
-    color:#fff;
-    font-size:1.1rem;
-    transition:transform .2s ease,background .2s ease;
-}
-
-.theatre-card:hover .theatre-play{
-    transform:translate(-50%,-50%) scale(1.08);
-    background:rgba(47,140,255,.82);
-}
-
-.theatre-info{
-    padding:22px 24px 25px;
+.theatre-card-header{
+    padding:24px 26px 18px;
 }
 
 .theatre-type{
@@ -117,32 +77,143 @@
     text-transform:uppercase;
 }
 
-.theatre-info h2{
-    margin:0 0 8px;
+.theatre-card-header h2{
+    margin:0;
     font-family:var(--font-display);
-    font-size:1.35rem;
+    font-size:1.45rem;
+    line-height:1.15;
 }
 
-.theatre-info p{
-    margin:0;
+.theatre-card-header p{
+    max-width:700px;
+    margin:10px 0 0;
     color:var(--slate);
     font-size:.84rem;
-    line-height:1.5;
 }
 
-.theatre-link{
-    display:inline-block;
-    margin-top:14px;
+.theatre-media{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-top:1px solid var(--line);
+}
+
+.media-panel{
+    min-width:0;
+    background:#edf0f2;
+}
+
+.media-panel + .media-panel{
+    border-left:1px solid var(--line);
+}
+
+.media-label{
+    padding:13px 18px;
+    background:#f7f8f8;
     color:var(--navy);
-    font-size:.74rem;
+    font-size:.65rem;
     font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
 }
 
-.theatre-link:hover{color:var(--blue);}
+.poster-view{
+    display:block;
+    height:430px;
+    padding:18px;
+    background:#edf0f2;
+}
+
+.poster-view img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    transition:transform .3s ease;
+}
+
+.poster-view:hover img{
+    transform:scale(1.015);
+}
+
+.video-view{
+    position:relative;
+    display:block;
+    height:430px;
+    overflow:hidden;
+    background:#071a2d;
+}
+
+.video-view::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(135deg,rgba(7,26,45,.05),rgba(7,26,45,.38));
+    pointer-events:none;
+}
+
+.video-view img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+}
+
+.video-view:hover img{
+    transform:scale(1.025);
+}
+
+.video-play{
+    position:absolute;
+    z-index:2;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:62px;
+    height:62px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:50%;
+    background:rgba(7,26,45,.55);
+    color:#fff;
+    font-size:1.15rem;
+    transition:transform .2s ease,background .2s ease;
+}
+
+.video-view:hover .video-play{
+    transform:translate(-50%,-50%) scale(1.08);
+    background:rgba(47,140,255,.85);
+}
+
+.video-caption{
+    padding:14px 18px 17px;
+    color:var(--slate);
+    font-size:.74rem;
+}
+
+.video-caption strong{
+    color:var(--navy);
+}
 
 @media(max-width:760px){
     .theatre-page{padding:58px 0 75px;}
-    .theatre-grid{grid-template-columns:1fr;}
+
+    .theatre-media{
+        grid-template-columns:1fr;
+    }
+
+    .media-panel + .media-panel{
+        border-left:0;
+        border-top:1px solid var(--line);
+    }
+
+    .poster-view,
+    .video-view{
+        height:390px;
+    }
 }
 </style>
 </head>
@@ -181,107 +252,128 @@
     <div class="container">
 
         <div class="theatre-header">
-
-            <a href="index.html#realisations" class="back-link">
-                ← Retour aux réalisations
-            </a>
+            <a href="index.html#realisations" class="back-link">← Retour aux réalisations</a>
 
             <p class="eyebrow">MOTION DESIGN · SOCIAL MEDIA</p>
 
             <h1>Affiches de théâtre animées</h1>
 
             <p>
-                Deux déclinaisons de supports événementiels transformés en contenus
-                animés pour les réseaux sociaux. Chaque affiche conserve son identité
-                graphique tout en étant adaptée au format vidéo.
+                Deux études de motion design à partir d'affiches événementielles.
+                Pour chaque projet, l'affiche originale est présentée séparément
+                de sa déclinaison vidéo afin de visualiser clairement le travail
+                de transformation du support print en contenu animé.
             </p>
-
         </div>
 
+        <div class="theatre-list">
 
-        <div class="theatre-grid">
-
-            <!-- LES MAGICIENS C'EST NOUS -->
+            <!-- PROJET 1 -->
             <article class="theatre-card">
 
-                <a href="https://youtube.com/shorts/XkuQ5n2Jefg?feature=share"
-                   class="theatre-poster"
-                   target="_blank"
-                   rel="noopener"
-                   aria-label="Voir le teaser Les Magiciens c'est nous">
-
-                    <img src="images/Les%20magiciens%20c'est%20nous.png"
-                         alt="Affiche Les Magiciens c'est nous"
-                         loading="lazy">
-
-                    <span class="theatre-play">▶</span>
-
-                </a>
-
-                <div class="theatre-info">
-
-                    <p class="theatre-type">Teaser · Format social media</p>
-
+                <div class="theatre-card-header">
+                    <p class="theatre-type">Projet 01 · Motion design</p>
                     <h2>Les Magiciens c'est nous</h2>
-
                     <p>
-                        Animation de l'affiche pour créer un teaser court,
-                        pensé pour une diffusion dynamique sur les réseaux sociaux.
+                        Affiche originale puis teaser animé correspondant,
+                        conçu pour une diffusion courte sur les réseaux sociaux.
                     </p>
-
-                    <a href="https://youtube.com/shorts/XkuQ5n2Jefg?feature=share"
-                       class="theatre-link"
-                       target="_blank"
-                       rel="noopener">
-                        Voir le teaser →
-                    </a>
-
                 </div>
 
+                <div class="theatre-media">
+
+                    <div class="media-panel">
+                        <div class="media-label">Affiche originale</div>
+
+                        <a class="poster-view"
+                           href="images/Les%20magiciens%20c'est%20nous.png"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Ouvrir l'affiche Les Magiciens c'est nous en grand">
+                            <img src="images/Les%20magiciens%20c'est%20nous.png"
+                                 alt="Affiche originale Les Magiciens c'est nous"
+                                 loading="lazy">
+                        </a>
+                    </div>
+
+                    <div class="media-panel">
+                        <div class="media-label">Vidéo · Teaser animé</div>
+
+                        <a class="video-view"
+                           href="https://youtube.com/shorts/XkuQ5n2Jefg?feature=share"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Voir le teaser vidéo Les Magiciens c'est nous">
+
+                            <img src="https://img.youtube.com/vi/XkuQ5n2Jefg/hqdefault.jpg"
+                                 alt="Aperçu vidéo du teaser Les Magiciens c'est nous"
+                                 loading="lazy">
+
+                            <span class="video-play">▶</span>
+                        </a>
+
+                        <div class="video-caption">
+                            <strong>Teaser animé</strong> · format vertical / social media
+                        </div>
+                    </div>
+
+                </div>
             </article>
 
 
-            <!-- SECRET STORY SENIORS -->
+            <!-- PROJET 2 -->
             <article class="theatre-card">
 
-                <a href="https://youtube.com/shorts/nFksEGiptuY?feature=share"
-                   class="theatre-poster"
-                   target="_blank"
-                   rel="noopener"
-                   aria-label="Voir le teaser Secret Story Seniors">
-
-                    <img src="images/secret%20story%20seniors.png"
-                         alt="Affiche Secret Story Seniors"
-                         loading="lazy">
-
-                    <span class="theatre-play">▶</span>
-
-                </a>
-
-                <div class="theatre-info">
-
-                    <p class="theatre-type">Teaser · Format social media</p>
-
+                <div class="theatre-card-header">
+                    <p class="theatre-type">Projet 02 · Motion design</p>
                     <h2>Secret Story Seniors</h2>
-
                     <p>
-                        Mise en mouvement de l'affiche afin de renforcer son impact
-                        visuel et de proposer une déclinaison vidéo adaptée aux réseaux sociaux.
+                        Affiche originale puis teaser animé correspondant,
+                        avec adaptation du visuel au rythme et au format vidéo.
                     </p>
-
-                    <a href="https://youtube.com/shorts/nFksEGiptuY?feature=share"
-                       class="theatre-link"
-                       target="_blank"
-                       rel="noopener">
-                        Voir le teaser →
-                    </a>
-
                 </div>
 
+                <div class="theatre-media">
+
+                    <div class="media-panel">
+                        <div class="media-label">Affiche originale</div>
+
+                        <a class="poster-view"
+                           href="images/secret%20story%20seniors.png"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Ouvrir l'affiche Secret Story Seniors en grand">
+                            <img src="images/secret%20story%20seniors.png"
+                                 alt="Affiche originale Secret Story Seniors"
+                                 loading="lazy">
+                        </a>
+                    </div>
+
+                    <div class="media-panel">
+                        <div class="media-label">Vidéo · Teaser animé</div>
+
+                        <a class="video-view"
+                           href="https://youtube.com/shorts/nFksEGiptuY?feature=share"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Voir le teaser vidéo Secret Story Seniors">
+
+                            <img src="https://img.youtube.com/vi/nFksEGiptuY/hqdefault.jpg"
+                                 alt="Aperçu vidéo du teaser Secret Story Seniors"
+                                 loading="lazy">
+
+                            <span class="video-play">▶</span>
+                        </a>
+
+                        <div class="video-caption">
+                            <strong>Teaser animé</strong> · format vertical / social media
+                        </div>
+                    </div>
+
+                </div>
             </article>
 
         </div>
-
     </div>
 </section>
 
