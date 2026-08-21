@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "aria-expanded",
                 String(isOpen)
             );
-
         });
 
         mainNav.querySelectorAll("a").forEach(link => {
@@ -30,11 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "aria-expanded",
                     "false"
                 );
-
             });
-
         });
-
     }
 
 
@@ -46,10 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const frame = document.querySelector("#youtubeFrame");
     const modalTitle = document.querySelector("#videoModalTitle");
 
-
     function openVideo(videoId, videoTitle = "Vidéo") {
 
-        if (!modal || !frame || !videoId) return;
+        if (!modal || !frame || !videoId) {
+            return;
+        }
 
         if (modalTitle) {
             modalTitle.textContent = videoTitle;
@@ -63,11 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         frame.title = videoTitle;
 
         modal.classList.add("is-open");
-
-        modal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
+        modal.setAttribute("aria-hidden", "false");
 
         document.body.style.overflow = "hidden";
     }
@@ -75,14 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function closeVideo() {
 
-        if (!modal || !frame) return;
+        if (!modal || !frame) {
+            return;
+        }
 
         modal.classList.remove("is-open");
-
-        modal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
+        modal.setAttribute("aria-hidden", "true");
 
         frame.src = "";
         frame.title = "";
@@ -91,35 +82,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* Déclencheurs YouTube */
+
     document
         .querySelectorAll(".youtube-preview, .youtube-trigger")
         .forEach(trigger => {
 
             trigger.addEventListener("click", event => {
 
-                if (trigger.tagName === "A") {
-                    event.preventDefault();
-                }
+                event.preventDefault();
+                event.stopPropagation();
 
                 openVideo(
                     trigger.dataset.youtube,
                     trigger.dataset.title || "Vidéo"
                 );
-
             });
-
         });
 
+
+    /* Fermeture */
 
     document
         .querySelectorAll("[data-close-video]")
         .forEach(element => {
 
-            element.addEventListener(
-                "click",
-                closeVideo
-            );
-
+            element.addEventListener("click", closeVideo);
         });
 
 
@@ -127,11 +115,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
             event.key === "Escape" &&
-            modal?.classList.contains("is-open")
+            modal &&
+            modal.classList.contains("is-open")
         ) {
             closeVideo();
         }
-
     });
 
 
@@ -145,7 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const id = preview.dataset.youtube;
 
-            if (!id) return;
+            if (!id) {
+                return;
+            }
 
             preview.style.backgroundImage =
                 "linear-gradient(135deg, rgba(7,26,45,.12), rgba(7,26,45,.68)), " +
@@ -154,47 +144,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 "/hqdefault.jpg\")";
 
             preview.style.backgroundSize = "cover";
-
             preview.style.backgroundPosition = "center";
-
         });
 
 
     /* =========================================================
-       CARROUSEL 3D
+       CARROUSEL
+       Navigation uniquement avec les flèches.
        
-       NAVIGATION UNIQUEMENT PAR LES FLÈCHES
-       
-       PAS DE GLISSÉ SOURIS
-       PAS DE DRAG
-       PAS DE DÉPLACEMENT DU TRACK
-       
-       Le CSS contrôle la position des cartes avec :
-       
-       .is-center
-       .is-left
-       .is-right
-       .is-hidden
-    ========================================================= */
+       IMPORTANT :
+       - pas de drag
+       - pas de swipe
+       - carte centrale dominante
+       - cartes latérales atténuées
+       - cartes non centrales non cliquables
+       ========================================================= */
 
-
-    const carousel =
-        document.querySelector(".projects-carousel");
-
-    const track =
-        document.querySelector(".carousel-track");
-
+    const carousel = document.querySelector(".projects-carousel");
+    const track = document.querySelector(".carousel-track");
 
     if (!carousel || !track) {
         return;
     }
 
-
-    const cards =
-        Array.from(
-            track.querySelectorAll(".carousel-card")
-        );
-
+    const cards = Array.from(
+        track.querySelectorAll(".carousel-card")
+    );
 
     if (!cards.length) {
         return;
@@ -202,157 +177,178 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       IMPORTANT
+       BON SÉLECTEURS DES FLÈCHES
        
-       L'INDEX HTML utilise :
-       
+       Le HTML utilise :
        .carousel-arrow.carousel-prev
        .carousel-arrow.carousel-next
-       
-       et non :
-       
-       .carousel-arrow.prev
-       .carousel-arrow.next
-    ========================================================= */
-
+       ========================================================= */
 
     const prevButton =
-        document.querySelector(
-            ".carousel-arrow.carousel-prev"
-        );
-
+        document.querySelector(".carousel-arrow.carousel-prev");
 
     const nextButton =
-        document.querySelector(
-            ".carousel-arrow.carousel-next"
-        );
+        document.querySelector(".carousel-arrow.carousel-next");
 
 
     let currentIndex = 0;
+    let isAnimating = false;
 
 
     /* =========================================================
-       MISE À JOUR DU CARROUSEL
+       POSITIONNEMENT DES CARTES
     ========================================================= */
 
-    function updateCarousel() {
+    function updateCarousel(animate = true) {
 
         const total = cards.length;
 
-
         cards.forEach((card, index) => {
 
-            let offset =
-                index - currentIndex;
+            /*
+             * Distance circulaire par rapport à la carte centrale.
+             */
+
+            let distance = index - currentIndex;
+
+            if (distance > total / 2) {
+                distance -= total;
+            }
+
+            if (distance < -total / 2) {
+                distance += total;
+            }
 
 
             /*
-             * Rotation circulaire.
-             *
-             * Exemple avec 7 cartes :
-             *
-             * 0 1 2 3 4 5 6
-             *
-             * Lorsque 0 est au centre :
-             *
-             * 6 = gauche
-             * 0 = centre
-             * 1 = droite
+             * Réinitialisation des classes.
              */
 
-            if (offset > total / 2) {
-                offset -= total;
-            }
-
-
-            if (offset < -total / 2) {
-                offset += total;
-            }
-
-
             card.classList.remove(
-                "is-center",
-                "is-left",
-                "is-right",
+                "is-active",
+                "is-prev",
+                "is-next",
                 "is-hidden"
             );
 
 
-            /* CENTRE */
+            /*
+             * Carte centrale
+             */
 
-            if (offset === 0) {
+            if (distance === 0) {
 
-                card.classList.add(
-                    "is-center"
+                card.classList.add("is-active");
+
+                card.style.pointerEvents = "auto";
+
+                card.setAttribute(
+                    "aria-hidden",
+                    "false"
                 );
 
+                return;
             }
 
 
-            /* GAUCHE */
+            /*
+             * Carte précédente
+             */
 
-            else if (offset === -1) {
+            if (distance === -1) {
 
-                card.classList.add(
-                    "is-left"
+                card.classList.add("is-prev");
+
+                card.style.pointerEvents = "none";
+
+                card.setAttribute(
+                    "aria-hidden",
+                    "true"
                 );
 
+                return;
             }
 
 
-            /* DROITE */
+            /*
+             * Carte suivante
+             */
 
-            else if (offset === 1) {
+            if (distance === 1) {
 
-                card.classList.add(
-                    "is-right"
+                card.classList.add("is-next");
+
+                card.style.pointerEvents = "none";
+
+                card.setAttribute(
+                    "aria-hidden",
+                    "true"
                 );
 
+                return;
             }
 
 
-            /* AUTRES CARTES */
+            /*
+             * Toutes les autres cartes
+             */
 
-            else {
+            card.classList.add("is-hidden");
 
-                card.classList.add(
-                    "is-hidden"
-                );
+            card.style.pointerEvents = "none";
 
-            }
-
+            card.setAttribute(
+                "aria-hidden",
+                "true"
+            );
         });
 
+
+        /*
+         * Permet de bloquer brièvement les clics pendant
+         * l'animation afin d'éviter les doubles changements.
+         */
+
+        if (animate) {
+
+            isAnimating = true;
+
+            window.setTimeout(() => {
+                isAnimating = false;
+            }, 480);
+
+        }
     }
 
 
     /* =========================================================
-       CARTE SUIVANTE
+       NAVIGATION
     ========================================================= */
+
+    function goTo(index) {
+
+        if (isAnimating) {
+            return;
+        }
+
+        const total = cards.length;
+
+        currentIndex =
+            ((index % total) + total) % total;
+
+        updateCarousel(true);
+    }
+
 
     function next() {
 
-        currentIndex =
-            (currentIndex + 1) %
-            cards.length;
-
-        updateCarousel();
-
+        goTo(currentIndex + 1);
     }
 
 
-    /* =========================================================
-       CARTE PRÉCÉDENTE
-    ========================================================= */
-
     function previous() {
 
-        currentIndex =
-            (currentIndex - 1 + cards.length) %
-            cards.length;
-
-        updateCarousel();
-
+        goTo(currentIndex - 1);
     }
 
 
@@ -362,19 +358,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (prevButton) {
 
-        prevButton.addEventListener(
-            "click",
-            event => {
+        prevButton.addEventListener("click", event => {
 
-                event.preventDefault();
+            event.preventDefault();
+            event.stopPropagation();
 
-                event.stopPropagation();
-
-                previous();
-
-            }
-        );
-
+            previous();
+        });
     }
 
 
@@ -384,27 +374,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (nextButton) {
 
-        nextButton.addEventListener(
-            "click",
-            event => {
+        nextButton.addEventListener("click", event => {
 
-                event.preventDefault();
+            event.preventDefault();
+            event.stopPropagation();
 
-                event.stopPropagation();
-
-                next();
-
-            }
-        );
-
+            next();
+        });
     }
 
 
     /* =========================================================
-       NAVIGATION CLAVIER
-       
-       ← précédente
-       → suivante
+       CLAVIER
+       Flèches gauche / droite.
     ========================================================= */
 
     carousel.setAttribute(
@@ -412,57 +394,35 @@ document.addEventListener("DOMContentLoaded", () => {
         "0"
     );
 
+    carousel.addEventListener("keydown", event => {
 
-    carousel.addEventListener(
-        "keydown",
-        event => {
+        if (event.key === "ArrowLeft") {
 
-            if (event.key === "ArrowRight") {
+            event.preventDefault();
 
-                event.preventDefault();
-
-                next();
-
-            }
-
-
-            if (event.key === "ArrowLeft") {
-
-                event.preventDefault();
-
-                previous();
-
-            }
-
+            previous();
         }
-    );
+
+        if (event.key === "ArrowRight") {
+
+            event.preventDefault();
+
+            next();
+        }
+    });
 
 
     /* =========================================================
-       REDIMENSIONNEMENT
+       PROTECTION CONTRE LE DRAG
+       
+       Aucun glisser-déposer ne doit être utilisé pour naviguer.
     ========================================================= */
 
-    let resizeTimer;
-
-
-    window.addEventListener(
-        "resize",
-        () => {
-
-            clearTimeout(resizeTimer);
-
-
-            resizeTimer = setTimeout(
-                () => {
-
-                    updateCarousel();
-
-                },
-                100
-            );
-
-        },
-        { passive: true }
+    carousel.addEventListener(
+        "dragstart",
+        event => {
+            event.preventDefault();
+        }
     );
 
 
@@ -470,6 +430,28 @@ document.addEventListener("DOMContentLoaded", () => {
        INITIALISATION
     ========================================================= */
 
-    updateCarousel();
+    updateCarousel(false);
+
+
+    /* =========================================================
+       REDIMENSIONNEMENT
+    ========================================================= */
+
+    let resizeTimer = null;
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            window.clearTimeout(resizeTimer);
+
+            resizeTimer = window.setTimeout(() => {
+
+                updateCarousel(false);
+
+            }, 150);
+        },
+        { passive: true }
+    );
 
 });
