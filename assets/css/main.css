@@ -301,3 +301,317 @@ img{max-width:100%;display:block}
     *,*::before,*::after{transition:none!important;animation:none!important}
     .hero-bg,.skill-card,.carousel-track{transform:none!important}
 }
+/* =========================================================
+   CARROUSEL 3D — VERSION STABLE
+   Carte centrale dominante
+   Cartes latérales réduites et atténuées
+========================================================= */
+
+.projects-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 0 45px;
+    perspective: 1400px;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.carousel-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    min-height: 520px;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* ---------------------------------------------------------
+   CARTES
+--------------------------------------------------------- */
+
+.carousel-card {
+    position: relative;
+    flex: 0 0 330px;
+    width: 330px;
+    min-height: 470px;
+
+    background: var(--white);
+    border-radius: 24px;
+    overflow: hidden;
+
+    box-shadow:
+        0 16px 42px rgba(7,26,45,.10);
+
+    transform-origin: center center;
+
+    transition:
+        transform .45s cubic-bezier(.22,.61,.36,1),
+        opacity .45s ease,
+        filter .45s ease,
+        box-shadow .45s ease;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    will-change: transform, opacity, filter;
+}
+
+/* ---------------------------------------------------------
+   IMAGE
+--------------------------------------------------------- */
+
+.carousel-card .project-image {
+    position: relative;
+
+    width: 100%;
+    height: 215px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 24px 24px 0 0;
+}
+
+.carousel-card .project-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+
+    transition: transform .5s ease;
+}
+
+/* Affiches : ne pas couper le visuel */
+
+.carousel-card .project-image-poster img {
+    object-fit: contain;
+    padding: 10px;
+    background: #edf0f2;
+}
+
+/* ---------------------------------------------------------
+   CARTES LATÉRALES
+   Le JS peut modifier scale / translate :
+   ces règles donnent simplement une base visuelle.
+--------------------------------------------------------- */
+
+.carousel-card:not(:nth-child(4)) {
+    opacity: .58;
+    filter: saturate(.72);
+}
+
+/* Les cartes éloignées doivent être discrètes */
+
+.carousel-card:nth-child(1),
+.carousel-card:nth-child(7) {
+    opacity: .30;
+    filter: saturate(.55) blur(.25px);
+}
+
+/* ---------------------------------------------------------
+   CARTE CENTRALE
+   Avec 7 cartes, la 4e est la position centrale initiale.
+--------------------------------------------------------- */
+
+.carousel-card:nth-child(4) {
+    opacity: 1;
+    filter: none;
+
+    box-shadow:
+        0 24px 65px rgba(7,26,45,.18);
+
+    z-index: 10;
+}
+
+/* ---------------------------------------------------------
+   EFFET VISUEL AU SURVOL
+--------------------------------------------------------- */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .carousel-card:hover {
+        box-shadow:
+            0 25px 65px rgba(7,26,45,.17);
+    }
+
+    .carousel-card:hover .project-image img {
+        transform: scale(1.025);
+    }
+}
+
+/* ---------------------------------------------------------
+   ÉTIQUETTES / PLAY
+--------------------------------------------------------- */
+
+.carousel-card .project-preview-label {
+    z-index: 5;
+}
+
+.carousel-card .play-badge {
+    z-index: 6;
+}
+
+/* ---------------------------------------------------------
+   INFORMATIONS
+--------------------------------------------------------- */
+
+.carousel-card .project-info {
+    padding: 20px 22px 23px;
+}
+
+.carousel-card .project-info h3 {
+    font-size: 1.12rem;
+    line-height: 1.2;
+}
+
+.carousel-card .project-info p:not(.project-type) {
+    font-size: .8rem;
+}
+
+/* ---------------------------------------------------------
+   INDICATION
+--------------------------------------------------------- */
+
+.carousel-hint {
+    margin: 0;
+
+    text-align: center;
+
+    color: var(--slate);
+
+    font-size: .7rem;
+    font-weight: 600;
+
+    letter-spacing: .04em;
+
+    opacity: .75;
+}
+
+/* =========================================================
+   TABLETTE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .projects-carousel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .carousel-track {
+        gap: 20px;
+        min-height: 490px;
+    }
+
+    .carousel-card {
+        flex-basis: 300px;
+        width: 300px;
+        min-height: 445px;
+    }
+
+    .carousel-card .project-image {
+        height: 200px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .projects-carousel {
+        padding-top: 20px;
+        padding-bottom: 35px;
+
+        perspective: 1000px;
+    }
+
+    .carousel-track {
+        gap: 14px;
+        min-height: 470px;
+    }
+
+    .carousel-card {
+        flex-basis: 285px;
+        width: 285px;
+        min-height: 430px;
+
+        border-radius: 21px;
+    }
+
+    .carousel-card .project-image {
+        height: 195px;
+        border-radius: 21px 21px 0 0;
+    }
+
+    .carousel-card .project-info {
+        padding: 18px 19px 20px;
+    }
+
+    /*
+       Sur mobile, les cartes éloignées sont encore
+       moins présentes visuellement.
+    */
+
+    .carousel-card:not(:nth-child(4)) {
+        opacity: .42;
+    }
+
+    .carousel-card:nth-child(1),
+    .carousel-card:nth-child(7) {
+        opacity: .20;
+    }
+
+    .carousel-hint {
+        font-size: .65rem;
+    }
+}
+
+
+/* =========================================================
+   PETITS ÉCRANS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .carousel-track {
+        min-height: 450px;
+    }
+
+    .carousel-card {
+        flex-basis: 270px;
+        width: 270px;
+        min-height: 415px;
+    }
+
+    .carousel-card .project-image {
+        height: 185px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITÉ
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .carousel-card,
+    .carousel-card .project-image img {
+        transition: none !important;
+    }
+}
