@@ -437,13 +437,9 @@ img{max-width:100%;display:block}
 }
 
 
-/* =========================================================
-   CARROUSEL 3D
-   VERSION STABLE
-   IMPORTANT :
-   - aucune gestion du drag ici
-   - les cartes latérales ne sont pas cliquables
-   - la carte centrale reste pleinement interactive
+/* /* =========================================================
+   CARROUSEL — VERSION STABLE
+   Navigation uniquement par les flèches
 ========================================================= */
 
 .carousel-wrapper{
@@ -457,17 +453,27 @@ img{max-width:100%;display:block}
     flex:0 0 44px;
     width:44px;
     height:44px;
+
     display:grid;
     place-items:center;
+
     border:1px solid var(--line);
     border-radius:50%;
+
     background:var(--white);
     color:var(--navy);
+
     font-size:1.8rem;
     line-height:1;
+
     cursor:pointer;
-    transition:transform .2s ease,background .2s ease,color .2s ease;
-    z-index:30;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+
+    z-index:100;
 }
 
 .carousel-arrow:hover{
@@ -476,121 +482,301 @@ img{max-width:100%;display:block}
     color:var(--white);
 }
 
-.carousel-arrow:focus-visible{
-    outline:3px solid rgba(47,140,255,.45);
-    outline-offset:3px;
-}
-
 .projects-carousel{
     position:relative;
     flex:1;
     width:100%;
+
     overflow:hidden;
+
     padding:30px 0 45px;
+
     perspective:1400px;
+
     user-select:none;
     -webkit-user-select:none;
+
+    touch-action:pan-y;
 }
 
 .carousel-track{
     position:relative;
-    display:block;
+
+    width:100%;
     min-height:520px;
+
     transform-style:preserve-3d;
 }
 
+
+/* =========================================================
+   CARTES
+========================================================= */
+
 .carousel-card{
     position:absolute;
+
     left:50%;
     top:50%;
+
     width:330px;
     min-height:470px;
+
     background:var(--white);
+
     border-radius:24px;
+
     overflow:hidden;
-    box-shadow:0 16px 42px rgba(7,26,45,.10);
+
+    box-shadow:
+        0 16px 42px rgba(7,26,45,.10);
+
     transform-origin:center center;
 
     transition:
-        transform .45s cubic-bezier(.22,.61,.36,1),
-        opacity .45s ease,
-        filter .45s ease,
-        box-shadow .45s ease;
+        transform .48s cubic-bezier(.22,.61,.36,1),
+        opacity .4s ease,
+        filter .4s ease,
+        box-shadow .4s ease;
 
     user-select:none;
     -webkit-user-select:none;
-    will-change:transform,opacity,filter;
+
+    will-change:
+        transform,
+        opacity,
+        filter;
+
+    /*
+     * Le JS contrôle les interactions.
+     */
 }
+
+
+/* IMAGE */
 
 .carousel-card .project-image{
     position:relative;
+
     width:100%;
     height:215px;
+
     display:block;
+
     overflow:hidden;
 }
 
 .carousel-card .project-image img{
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
 
-/* CENTRAL */
+/* =========================================================
+   CARTE CENTRALE
+========================================================= */
 
-.carousel-card.is-center{
-    z-index:10;
+.carousel-card.is-active{
+
+    z-index:30;
+
     opacity:1;
+
     filter:none;
+
     transform:
         translate(-50%,-50%)
-        translate3d(0,0,0)
+        translateZ(45px)
         scale(1.08);
-    box-shadow:0 24px 60px rgba(7,26,45,.18);
+
+    box-shadow:
+        0 26px 65px rgba(7,26,45,.20);
+
     pointer-events:auto;
 }
 
 
-/* GAUCHE */
+/* =========================================================
+   CARTE GAUCHE
+========================================================= */
 
-.carousel-card.is-left{
-    z-index:6;
-    opacity:.38;
+.carousel-card.is-prev{
+
+    z-index:20;
+
+    opacity:.48;
+
+    filter:saturate(.75);
+
     transform:
         translate(-50%,-50%)
-        translate3d(-58%,0,-90px)
+        translate3d(-62%,0,-70px)
         rotateY(10deg)
-        scale(.78);
+        scale(.76);
+
     pointer-events:none;
 }
 
 
-/* DROITE */
+/* =========================================================
+   CARTE DROITE
+========================================================= */
 
-.carousel-card.is-right{
-    z-index:6;
-    opacity:.38;
+.carousel-card.is-next{
+
+    z-index:20;
+
+    opacity:.48;
+
+    filter:saturate(.75);
+
     transform:
         translate(-50%,-50%)
-        translate3d(58%,0,-90px)
+        translate3d(62%,0,-70px)
         rotateY(-10deg)
-        scale(.78);
+        scale(.76);
+
     pointer-events:none;
 }
 
 
-/* CARTES ÉLOIGNÉES */
+/* =========================================================
+   CARTES NON VISIBLES
+========================================================= */
 
 .carousel-card.is-hidden{
+
     z-index:1;
-    opacity:.08;
+
+    opacity:0;
+
+    filter:blur(2px);
+
     transform:
         translate(-50%,-50%)
-        translate3d(0,0,-180px)
+        translateZ(-180px)
         scale(.58);
-    filter:blur(1px) saturate(.45);
+
     pointer-events:none;
+}
+
+
+/* =========================================================
+   CONTENU DES CARTES
+========================================================= */
+
+.carousel-card .project-info{
+    padding:18px 20px 20px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:950px){
+
+    .carousel-card{
+        width:330px;
+    }
+
+    .carousel-card.is-active{
+        transform:
+            translate(-50%,-50%)
+            translateZ(35px)
+            scale(1.04);
+    }
+
+    .carousel-card.is-prev{
+
+        transform:
+            translate(-50%,-50%)
+            translate3d(-58%,0,-70px)
+            rotateY(8deg)
+            scale(.70);
+
+        opacity:.30;
+    }
+
+    .carousel-card.is-next{
+
+        transform:
+            translate(-50%,-50%)
+            translate3d(58%,0,-70px)
+            rotateY(-8deg)
+            scale(.70);
+
+        opacity:.30;
+    }
+}
+
+
+@media(max-width:760px){
+
+    .carousel-wrapper{
+        gap:8px;
+    }
+
+    .carousel-arrow{
+        flex:0 0 38px;
+
+        width:38px;
+        height:38px;
+
+        font-size:1.5rem;
+    }
+
+    .projects-carousel{
+        padding-top:18px;
+        padding-bottom:30px;
+    }
+
+    .carousel-track{
+        min-height:455px;
+    }
+
+    .carousel-card{
+        width:min(78vw,350px);
+    }
+
+    .carousel-card .project-image{
+        height:220px;
+    }
+
+    .carousel-card.is-active{
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.03);
+    }
+
+    .carousel-card.is-prev{
+
+        transform:
+            translate(-50%,-50%)
+            translate3d(-68%,0,-100px)
+            rotateY(8deg)
+            scale(.62);
+
+        opacity:.15;
+    }
+
+    .carousel-card.is-next{
+
+        transform:
+            translate(-50%,-50%)
+            translate3d(68%,0,-100px)
+            rotateY(-8deg)
+            scale(.62);
+
+        opacity:.15;
+    }
+
+    .carousel-card.is-hidden{
+        opacity:0;
+    }
 }
 
 
