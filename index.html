@@ -1,41 +1,723 @@
-CORRECTION INDEX.HTML — CARROUSEL
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-1. Conserver toute la structure HTML du carrousel :
-   .carousel-wrapper
-   .carousel-arrow.carousel-prev
-   .projects-carousel
-   .carousel-track
-   .carousel-card
-   .carousel-arrow.carousel-next
+    <title>Stéphane Njockum — Communication digitale</title>
 
-2. SUPPRIMER ENTIEREMENT le second <script> situé juste avant </body>,
-   celui qui commence par :
+    <meta name="description"
+          content="Portfolio de Stéphane Njockum — communication digitale, création de contenus, audiovisuel et communication événementielle.">
 
-   document.addEventListener("DOMContentLoaded", () => {
-       const cards = [...document.querySelectorAll(".carousel-card")];
+    <link rel="stylesheet" href="assets/css/main.css">
 
-   Il s'agit d'un second contrôleur de carrousel qui entre en conflit
-   avec main.js.
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-3. Garder uniquement :
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+          rel="stylesheet">
+</head>
 
-   <script src="assets/js/main.js"></script>
+<body>
 
-4. Dans main.js, les sélecteurs des flèches doivent correspondre exactement
-   à l'HTML actuel :
+<header class="site-header">
+    <div class="container nav-container">
 
-   const prevButton = document.querySelector(".carousel-prev");
-   const nextButton = document.querySelector(".carousel-next");
+        <a href="#accueil" class="brand" aria-label="Accueil">
+            <span class="brand-name">STÉPHANE NJOCKUM</span>
+            <span class="brand-role">Communication digitale</span>
+        </a>
 
-   et NON :
-   .carousel-arrow.prev
-   .carousel-arrow.next
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-5. Aucun code pointerdown / pointermove / pointerup / drag ne doit être
-   présent dans main.js.
+        <nav class="main-nav" aria-label="Navigation principale">
+            <a href="#realisations">Réalisations</a>
+            <a href="#profil">Profil</a>
+            <a href="#contact">Contact</a>
 
-6. Les liens <a> des cartes doivent rester de vrais liens :
-   ne pas mettre pointer-events:none sur les cartes ou leurs liens.
+            <a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link"
+               class="nav-cv"
+               target="_blank"
+               rel="noopener">
+                CV ↗
+            </a>
+        </nav>
 
-7. Pour les cartes cachées du carrousel, c'est le CSS qui gère
-   l'apparence. Le JS ne doit pas désactiver les liens.
+    </div>
+</header>
+
+<main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section id="accueil" class="hero">
+
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                COMMUNICATION DIGITALE · CRÉATION DE CONTENUS
+            </p>
+
+            <h1>
+                Des messages clairs<br>
+                Des expériences qui marquent<span></span>
+            </h1>
+
+            <p class="hero-text">
+                Profil hybride entre communication, création de contenus
+                et expérience de terrain.
+                Je développe aujourd’hui mes compétences en communication
+                digitale, création visuelle, audiovisuel et stratégie
+                de contenus.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#realisations" class="button button-primary">
+                    Voir les réalisations
+                </a>
+
+                <a href="#profil" class="button button-secondary">
+                    Mon profil
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     SAVOIR-FAIRE
+========================================================= -->
+
+<section class="skills-intro">
+
+    <div class="container">
+
+        <p class="eyebrow">SAVOIR-FAIRE</p>
+
+        <div class="skills-grid">
+
+            <article class="skill-card">
+                <img
+                    class="skill-editorial"
+                    src="images/editorial-communication.svg"
+                    alt="Composition éditoriale représentant des supports de communication"
+                    loading="lazy">
+
+                <h2>Communication</h2>
+
+                <p>
+                    Supports, messages et déclinaisons adaptés
+                    aux publics et aux contextes.
+                </p>
+            </article>
+
+            <article class="skill-card">
+                <img
+                    class="skill-editorial"
+                    src="images/editorial-video.svg"
+                    alt="Composition éditoriale représentant le montage vidéo"
+                    loading="lazy">
+
+                <h2>Vidéo</h2>
+
+                <p>
+                    Montage, rythme, habillage et adaptation
+                    des contenus aux formats digitaux.
+                </p>
+            </article>
+
+            <article class="skill-card">
+                <img
+                    class="skill-editorial"
+                    src="images/editorial-motion.svg"
+                    alt="Composition éditoriale représentant l’animation graphique"
+                    loading="lazy">
+
+                <h2>Motion Design</h2>
+
+                <p>
+                    Animation graphique pour renforcer
+                    la compréhension et l’impact visuel.
+                </p>
+            </article>
+
+            <article class="skill-card">
+                <img
+                    class="skill-editorial"
+                    src="images/editorial-creation.svg"
+                    alt="Composition éditoriale représentant la création visuelle"
+                    loading="lazy">
+
+                <h2>Création visuelle</h2>
+
+                <p>
+                    Graphisme, mise en page, 3D et exploration
+                    des outils de création assistée par IA.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     RÉALISATIONS — CARROUSEL
+     Navigation uniquement par les flèches.
+     Aucun script inline.
+========================================================= -->
+
+<section id="realisations" class="projects-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <h2>Réalisations</h2>
+            </div>
+
+            <p>
+                Une sélection de projets en communication,
+                création visuelle, audiovisuel et événementiel.
+            </p>
+
+        </div>
+
+
+        <div class="carousel-wrapper">
+
+            <button
+                class="carousel-arrow carousel-prev"
+                type="button"
+                aria-label="Réalisation précédente">
+                ‹
+            </button>
+
+
+            <div
+                class="projects-carousel"
+                tabindex="0"
+                aria-label="Carrousel des réalisations">
+
+                <div class="carousel-track">
+
+
+                    <!-- 1 — MEDIASTAR -->
+
+                    <article class="carousel-card">
+
+                        <a href="https://www.mediastar-publicite.com/"
+                           class="project-image project-preview-link"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Voir le site Mediastar Publicité">
+
+                            <img
+                                src="./images/vignette-mediastar.png"
+                                alt="Aperçu du site Mediastar Publicité"
+                                loading="lazy">
+
+                            <span class="project-preview-label">WEB</span>
+
+                        </a>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Communication digitale
+                            </p>
+
+                            <h3>Mediastar Publicité</h3>
+
+                            <p>
+                                Conception et réalisation
+                                d’un site web professionnel.
+                            </p>
+
+                            <a href="https://www.mediastar-publicite.com/"
+                               class="project-link"
+                               target="_blank"
+                               rel="noopener">
+                                Voir le site →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 2 — JAZZ À SAINT-RÉMY -->
+
+                    <article class="carousel-card">
+
+                        <button
+                            class="project-image youtube-preview"
+                            type="button"
+                            data-youtube="UbM4svINKoU"
+                            data-title="Jazz à Saint-Rémy — teaser principal"
+                            aria-label="Lire le teaser principal Jazz à Saint-Rémy">
+
+                            <span class="play-badge">▶</span>
+                            <span class="project-preview-label">VIDÉO</span>
+
+                        </button>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Teaser · Événementiel
+                            </p>
+
+                            <h3>Jazz à Saint-Rémy</h3>
+
+                            <p>
+                                Création d’un teaser audiovisuel
+                                et déclinaisons pour différents formats.
+                            </p>
+
+                            <button
+                                class="project-link project-link-button youtube-trigger"
+                                type="button"
+                                data-youtube="UbM4svINKoU"
+                                data-title="Jazz à Saint-Rémy — teaser principal">
+                                Voir la vidéo →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 3 — FESTIVAL SLAMSOLIDAIRE -->
+
+                    <article class="carousel-card">
+
+                        <a href="images/Planche%20com%20festival%20Slam.png"
+                           class="project-image project-image-poster"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Voir la planche de communication du Festival SlamSolidaire">
+
+                            <img
+                                src="images/Grande%20affiche%20festival%20slam.png"
+                                alt="Grande affiche du Festival SlamSolidaire"
+                                loading="lazy">
+
+                        </a>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Communication événementielle
+                            </p>
+
+                            <h3>Festival SlamSolidaire</h3>
+
+                            <p>
+                                Campagne événementielle
+                                et déclinaisons print.
+                            </p>
+
+                            <a href="images/Planche%20com%20festival%20Slam.png"
+                               class="project-link"
+                               target="_blank"
+                               rel="noopener">
+                                Voir la planche →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 4 — AFFICHES DE THÉÂTRE -->
+
+                    <article class="carousel-card">
+
+                        <a href="theatre.html"
+                           class="project-image project-preview-link"
+                           aria-label="Voir les affiches de théâtre et leurs vidéos">
+
+                            <img
+                                src="./images/vignette-affiches-theatre.png"
+                                alt="Aperçu des affiches de théâtre animées"
+                                loading="lazy">
+
+                            <span class="play-badge">▶</span>
+                            <span class="project-preview-label">MOTION</span>
+
+                        </a>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Animation · Social media
+                            </p>
+
+                            <h3>Affiches de théâtre animées</h3>
+
+                            <p>
+                                Animation de supports destinés
+                                aux réseaux sociaux.
+                            </p>
+
+                            <a href="theatre.html" class="project-link">
+                                Voir le projet →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 5 — CANNES -->
+
+                    <article class="carousel-card">
+
+                        <button
+                            class="project-image youtube-preview"
+                            type="button"
+                            data-youtube="45iLTRKhXwo"
+                            data-title="Teaser Cannes"
+                            aria-label="Lire le teaser Cannes">
+
+                            <span class="play-badge">▶</span>
+                            <span class="project-preview-label">VIDÉO</span>
+
+                        </button>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Communication territoriale
+                            </p>
+
+                            <h3>Teaser Cannes</h3>
+
+                            <p>
+                                Teaser audiovisuel autour
+                                de la ville de Cannes.
+                            </p>
+
+                            <button
+                                class="project-link project-link-button youtube-trigger"
+                                type="button"
+                                data-youtube="45iLTRKhXwo"
+                                data-title="Teaser Cannes">
+                                Voir la vidéo →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 6 — PROJET CALYPSO -->
+
+                    <article class="carousel-card">
+
+                        <button
+                            class="project-image youtube-preview"
+                            type="button"
+                            data-youtube="2KbTK1tdt0w"
+                            data-title="Projet Calypso"
+                            aria-label="Lire le film du projet Calypso">
+
+                            <span class="play-badge">▶</span>
+                            <span class="project-preview-label">FILM</span>
+
+                        </button>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Communication institutionnelle
+                            </p>
+
+                            <h3>Projet Calypso</h3>
+
+                            <p>
+                                Film institutionnel destiné à valoriser
+                                l’établissement Lycée Hutinel pour un concours.
+                            </p>
+
+                            <button
+                                class="project-link project-link-button youtube-trigger"
+                                type="button"
+                                data-youtube="2KbTK1tdt0w"
+                                data-title="Projet Calypso">
+                                Voir le film →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 7 — VILLE DU CANNET -->
+
+                    <article class="carousel-card">
+
+                        <a href="cannet.html"
+                           class="project-image project-preview-link"
+                           aria-label="Voir le projet audiovisuel de la Ville du Cannet">
+
+                            <img
+                                src="./images/vignette-ville-cannet.png"
+                                alt="Aperçu du projet audiovisuel pour la Ville du Cannet"
+                                loading="lazy">
+
+                            <span class="play-badge">▶</span>
+                            <span class="project-preview-label">FILM</span>
+
+                        </a>
+
+                        <div class="project-info">
+
+                            <p class="project-type">
+                                Communication institutionnelle
+                            </p>
+
+                            <h3>Ville du Cannet</h3>
+
+                            <p>
+                                Contenu audiovisuel destiné
+                                à valoriser la ville du Cannet.
+                            </p>
+
+                            <a href="cannet.html" class="project-link">
+                                Voir le projet →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+
+
+            <button
+                class="carousel-arrow carousel-next"
+                type="button"
+                aria-label="Réalisation suivante">
+                ›
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     PROFIL
+========================================================= -->
+
+<section id="profil" class="profile-section">
+
+    <div class="container profile-grid">
+
+        <div>
+            <h2>
+                Communication,
+                contenu et terrain.
+            </h2>
+        </div>
+
+        <div class="profile-text">
+
+            <p>
+                Professionnel de la communication terrain avec
+                une expérience dans la diffusion et la mise en œuvre
+                de supports de communication, complétée par une
+                expérience en communication, gestion et création visuelle.
+            </p>
+
+            <p>
+                Je consolide aujourd’hui ce parcours par une formation
+                en communication digitale, avec l’objectif de développer
+                mes compétences en stratégie de communication,
+                création de contenus et communication numérique.
+            </p>
+
+            <div class="profile-skills">
+                <span>Communication digitale</span>
+                <span>Création de contenus</span>
+                <span>Communication événementielle</span>
+                <span>Création graphique</span>
+                <span>Vidéo</span>
+                <span>Motion Design</span>
+                <span>Gestion de projet</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     OUTILS
+========================================================= -->
+
+<section class="tools-section">
+
+    <div class="container">
+
+        <p class="eyebrow">ENVIRONNEMENT DE CRÉATION</p>
+
+        <div class="tools-list">
+            <span>Adobe Photoshop</span>
+            <span>Adobe Illustrator</span>
+            <span>Adobe InDesign</span>
+            <span>Adobe Premiere Pro</span>
+            <span>Adobe After Effects</span>
+            <span>DaVinci Resolve</span>
+            <span>Blender</span>
+            <span>Canva</span>
+            <span>WordPress</span>
+            <span>IA générative</span>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact" class="contact-section">
+
+    <div class="container contact-content">
+
+        <p class="eyebrow">CONTACT</p>
+
+        <h2>Un besoin ?</h2>
+
+        <p>
+            Pour tout renseignement, proposition de stage,
+            projet ou collaboration :
+        </p>
+
+        <div class="contact-actions">
+
+            <a href="mailto:njockum11@yahoo.fr?subject=Prise%20de%20contact%20professionnelle"
+               class="button button-light">
+                Me contacter
+            </a>
+
+            <a href="tel:+33768992425"
+               class="button button-outline-light">
+                07 68 99 24 25
+            </a>
+
+            <a href="https://www.linkedin.com/in/st%C3%A9phane-njockum-76b447222"
+               target="_blank"
+               rel="noopener"
+               class="button button-outline-light">
+                LinkedIn ↗
+            </a>
+
+            <a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link"
+               target="_blank"
+               rel="noopener"
+               class="button button-outline-light">
+                CV ↗
+            </a>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="container footer-content">
+
+        <p>© 2026 Stéphane Njockum</p>
+
+        <p>
+            Communication digitale · Création de contenus · Événementiel
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     YOUTUBE LIGHTBOX
+========================================================= -->
+
+<div class="video-modal"
+     id="videoModal"
+     aria-hidden="true">
+
+    <div class="video-modal-backdrop"
+         data-close-video>
+    </div>
+
+    <div class="video-modal-dialog"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="videoModalTitle">
+
+        <button
+            class="video-modal-close"
+            type="button"
+            aria-label="Fermer la vidéo"
+            data-close-video>
+            ×
+        </button>
+
+        <div class="video-frame">
+
+            <iframe
+                id="youtubeFrame"
+                title=""
+                src=""
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <h2 id="videoModalTitle"></h2>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     UN SEUL JAVASCRIPT
+========================================================= -->
+
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
