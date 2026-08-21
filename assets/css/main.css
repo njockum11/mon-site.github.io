@@ -1,8 +1,9 @@
 /* =========================================================
-   STÉPHANE NJOCKUM — PORTFOLIO / V2
+   STÉPHANE NJOCKUM — PORTFOLIO
+   MAIN CSS + CARROUSEL 3D STABLE
 ========================================================= */
 
-:root {
+:root{
     --navy:#071a2d;
     --navy-light:#123654;
     --blue:#2f8cff;
@@ -19,17 +20,27 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--navy);font-family:var(--font-main);line-height:1.6}
+body{
+    margin:0;background:var(--cream);color:var(--navy);
+    font-family:var(--font-main);line-height:1.6;
+}
 body,button,a{font-family:var(--font-main)}
 a{color:inherit;text-decoration:none}
 button{border:0}
 img{max-width:100%;display:block}
-
 .container{width:min(100% - 48px,var(--max-width));margin:0 auto}
 
 /* HEADER */
-.site-header{position:sticky;top:0;z-index:1000;background:rgba(7,26,45,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--dark-line)}
-.nav-container{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.site-header{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(7,26,45,.96);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--dark-line);
+}
+.nav-container{
+    min-height:76px;display:flex;align-items:center;
+    justify-content:space-between;gap:28px;
+}
 .brand{display:flex;flex-direction:column;line-height:1.1}
 .brand-name{color:var(--white);font-size:.95rem;font-weight:800;letter-spacing:.08em}
 .brand-role{margin-top:5px;color:#9fc9ff;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase}
@@ -42,176 +53,172 @@ img{max-width:100%;display:block}
 .menu-toggle span{display:block;width:24px;height:2px;margin:5px auto;background:var(--white)}
 
 /* HERO */
-.hero{position:relative;min-height:620px;overflow:hidden;display:flex;align-items:center;background:var(--navy);color:var(--white);perspective:1000px}
-.hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(7,26,45,.97),rgba(7,26,45,.45)),url("/images/hero-evenement-tourisme.png") center right/cover no-repeat;transform:translate3d(var(--parallax-x,0px),var(--parallax-y,0px),0) scale(1.04);transition:transform .12s ease-out;will-change:transform}
-.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(47,140,255,.13) 42.2%,transparent 42.7%),linear-gradient(115deg,transparent 55%,rgba(47,140,255,.08) 55.2%,transparent 55.7%)}
-.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.55fr);gap:60px;align-items:center}
+.hero{
+    position:relative;min-height:620px;overflow:hidden;
+    display:flex;align-items:center;background:var(--navy);color:var(--white);
+}
+.hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:
+        linear-gradient(90deg,rgba(7,26,45,.97),rgba(7,26,45,.45)),
+        url("../../images/hero-evenement-tourisme.png") center right/cover no-repeat;
+    transition:transform .12s ease-out;
+    will-change:transform;
+}
+.hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(115deg,transparent 42%,rgba(47,140,255,.13) 42.2%,transparent 42.7%),
+      linear-gradient(115deg,transparent 55%,rgba(47,140,255,.08) 55.2%,transparent 55.7%);
+}
+.hero-inner{
+    position:relative;z-index:1;display:grid;
+    grid-template-columns:minmax(0,1.25fr) minmax(250px,.55fr);
+    gap:60px;align-items:center;
+}
 .eyebrow{margin:0 0 16px;color:#5da9ff;font-size:.85rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
-.hero h1{max-width:760px;margin:0;font-family:var(--font-display);font-size:clamp(3rem,5.5vw,5.6rem);line-height:.96;letter-spacing:-.055em}
+.hero h1{
+    max-width:760px;margin:0;font-family:var(--font-display);
+    font-size:clamp(3rem,5.5vw,5.6rem);line-height:.96;letter-spacing:-.055em;
+}
 .hero h1 span{color:#5da9ff}
 .hero-text{max-width:650px;margin:28px 0 0;color:#d4dee7;font-size:1.03rem}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 19px;border-radius:30px;font-size:.8rem;font-weight:750;letter-spacing:.025em;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.button{
+    display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+    padding:0 19px;border-radius:30px;font-size:.8rem;font-weight:750;
+    letter-spacing:.025em;transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
 .button:hover{transform:translateY(-2px)}
 .button-primary{background:var(--blue);color:var(--navy)}
 .button-primary:hover{background:#65a9ff}
 .button-secondary{border:1px solid rgba(255,255,255,.38);color:var(--white)}
 .button-secondary:hover{border-color:#72b5ff;color:#72b5ff}
-.hero-sector{display:grid;gap:0;border-left:1px solid rgba(93,169,255,.55);padding-left:26px}
-.hero-sector span{position:relative;padding:15px 0;color:#f4f8fb;font-size:.83rem;font-weight:750;letter-spacing:.05em}
-.hero-sector span+span{border-top:1px solid rgba(255,255,255,.12)}
 
 /* SAVOIR-FAIRE */
 .skills-intro{padding:76px 0;background:var(--cream)}
 .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:stretch}
-.skill-card{min-height:220px;padding:26px 22px 24px;border:1px solid var(--line);border-radius:22px;background:var(--white);box-shadow:0 10px 28px rgba(7,26,45,.06);display:flex;flex-direction:column;--card-x:0px;--card-y:0px;transform:translate3d(var(--card-x),var(--card-y),0);transition:transform .15s ease-out,box-shadow .25s ease;will-change:transform}
-.skill-card:hover{box-shadow:0 16px 38px rgba(7,26,45,.11)}
-.skill-editorial{width:calc(100% + 44px);height:92px;object-fit:cover;display:block;margin:-26px -22px 18px;border-radius:22px 22px 0 0}
-.skill-card h2{margin:0 0 8px;font-size:1.05rem;line-height:1.25}
+.skill-card{
+    min-height:220px;padding:18px 20px 20px;border:1px solid var(--line);
+    border-radius:22px;background:var(--white);box-shadow:0 10px 28px rgba(7,26,45,.06);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:transform .18s ease-out,box-shadow .25s ease;
+    will-change:transform;
+}
+.skill-editorial{
+    width:100%;height:92px;object-fit:cover;display:block;
+    margin:-18px 0 17px;border-radius:18px 18px 0 0;
+}
+.skill-card h2{margin:0 0 9px;font-size:1.05rem;line-height:1.25}
 .skill-card p{margin:0;color:var(--slate);font-size:.82rem;line-height:1.5}
 
 /* PROJECTS */
 .projects-section{padding:92px 0;background:var(--white)}
-.section-heading{display:grid;grid-template-columns:1fr .7fr;gap:50px;align-items:end;margin-bottom:30px}
-.section-heading h2,.profile-section h2{margin:0;font-family:var(--font-display);font-size:clamp(2rem,3vw,3rem);line-height:1;letter-spacing:-.045em}
+.section-heading{
+    display:grid;grid-template-columns:1fr .7fr;gap:50px;
+    align-items:end;margin-bottom:38px;
+}
+.section-heading h2,.profile-section h2{
+    margin:0;font-family:var(--font-display);
+    font-size:clamp(2rem,3vw,3rem);line-height:1;letter-spacing:-.045em;
+}
 .section-heading>p{margin:0;color:var(--slate);font-size:.94rem}
 
-/* CARROUSEL 3D */
-.projects-carousel{
-    --carousel-shift:0px;
-    position:relative;
-    overflow:hidden;
-    padding:30px 0 42px;
+/* Generic project/card content */
+.project-image{
+    position:relative;height:205px;display:flex;align-items:center;
+    justify-content:center;overflow:hidden;color:var(--white);
 }
-
-.carousel-track{
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:465px;
-    perspective:1400px;
-    transform:translate3d(var(--carousel-shift),0,0);
-    transition:transform .18s ease-out;
-    touch-action:pan-y;
-}
-
-.carousel-card{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:min(360px,31vw);
-    margin:0;
-    background:var(--white);
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 12px 35px rgba(7,26,45,.08);
-    opacity:.30;
-    filter:saturate(.6) brightness(.84);
-    transform:translate(-50%,-50%) scale(.76);
-    pointer-events:none;
-    user-select:none;
-    transition:transform .55s cubic-bezier(.22,.61,.36,1),opacity .45s ease,filter .45s ease,box-shadow .45s ease;
-    will-change:transform,opacity;
-}
-
-.carousel-card.is-active{
-    z-index:5;
-    opacity:1;
-    filter:none;
-    transform:translate(-50%,-50%) scale(1.08);
-    box-shadow:0 24px 60px rgba(7,26,45,.18);
-    pointer-events:auto;
-    user-select:auto;
-    cursor:pointer;
-}
-
-.carousel-card.is-prev{
-    z-index:3;
-    opacity:.34;
-    transform:translate(calc(-50% - 285px),-50%) rotateY(11deg) scale(.78);
-}
-
-.carousel-card.is-next{
-    z-index:3;
-    opacity:.34;
-    transform:translate(calc(-50% + 285px),-50%) rotateY(-11deg) scale(.78);
-}
-
-.carousel-card.is-hidden{
-    z-index:1;
-    opacity:.08;
-    transform:translate(-50%,-50%) scale(.64);
-    filter:blur(1px) saturate(.35);
-    pointer-events:none;
-}
-
-.carousel-card .project-image{
-    height:205px;
-}
-
-.carousel-card .project-info{
-    padding:18px 20px 20px;
-}
-
-.carousel-card .project-info h3{
-    margin:0 0 7px;
-    font-family:var(--font-display);
-    font-size:1.08rem;
-}
-
-.carousel-card .project-info p:not(.project-type){
-    margin:0;
-    color:var(--slate);
-    font-size:.79rem;
-    line-height:1.45;
-}
-
-.carousel-card .project-type{
-    margin:0 0 6px;
-    color:var(--slate);
-    font-size:.62rem;
-    font-weight:800;
-    letter-spacing:.09em;
-    text-transform:uppercase;
-}
-
-.carousel-controls{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:14px;
-    margin-top:4px;
-}
-
-.carousel-button{
-    width:42px;
-    height:42px;
-    display:grid;
-    place-items:center;
-    border:1px solid var(--line);
-    border-radius:50%;
-    background:var(--white);
-    color:var(--navy);
-    cursor:pointer;
-    transition:transform .2s ease,background .2s ease,color .2s ease;
-}
-
-.carousel-button:hover{transform:translateY(-2px);background:var(--navy);color:var(--white)}
-.carousel-counter{min-width:60px;text-align:center;color:var(--slate);font-size:.7rem;font-weight:800;letter-spacing:.08em}
-
-/* Images des cartes */
-.project-image{position:relative;height:205px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--white)}
+.project-image img{width:100%;height:100%;object-fit:cover}
 .project-preview-link,.youtube-preview{width:100%;cursor:pointer;text-align:left}
-.project-image-poster{background:#edf0f2;padding:10px}
-.project-image-poster img{width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .25s ease}
-.project-card:hover .project-image-poster img,.carousel-card.is-active:hover .project-image-poster img{transform:scale(1.025)}
-.project-preview-label{position:absolute;left:18px;top:17px;padding:6px 9px;background:rgba(7,26,45,.74);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.1em}
-.play-badge{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.65);border-radius:50%;background:rgba(7,26,45,.42);color:#fff;font-size:1rem;transition:transform .2s ease,background .2s ease}
-.project-image:hover .play-badge{transform:translate(-50%,-50%) scale(1.08);background:rgba(47,140,255,.75)}
+.project-info{padding:18px 20px 20px}
+.project-type{margin:0 0 6px;color:var(--slate);font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.project-info h3{margin:0 0 7px;font-family:var(--font-display);font-size:1.08rem}
+.project-info p:not(.project-type){margin:0;color:var(--slate);font-size:.79rem;line-height:1.45}
 .project-link{display:inline-block;margin-top:11px;color:var(--navy);font-size:.72rem;font-weight:800}
 .project-link:hover{color:var(--blue)}
 .project-link-button{padding:0;border:0;background:transparent;cursor:pointer;text-align:left}
+.project-preview-label{
+    position:absolute;left:18px;top:17px;padding:6px 9px;
+    background:rgba(7,26,45,.74);border:1px solid rgba(255,255,255,.2);
+    color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.1em;
+}
+.play-badge{
+    position:absolute;z-index:2;left:50%;top:50%;
+    transform:translate(-50%,-50%);width:52px;height:52px;
+    display:grid;place-items:center;border:1px solid rgba(255,255,255,.65);
+    border-radius:50%;background:rgba(7,26,45,.42);color:#fff;font-size:1rem;
+}
+.project-image:hover .play-badge{transform:translate(-50%,-50%) scale(1.08);background:rgba(47,140,255,.75)}
+
+/* =========================================================
+   CARROUSEL 3D — VERSION STABLE
+   Centre dominant · côtés atténués
+========================================================= */
+.carousel-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+.carousel-arrow{
+    flex:0 0 44px;width:44px;height:44px;
+    display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:50%;
+    background:var(--white);color:var(--navy);
+    font-size:1.8rem;line-height:1;cursor:pointer;
+    transition:transform .2s ease,background .2s ease,color .2s ease;
+    z-index:30;
+}
+.carousel-arrow:hover{transform:translateY(-2px);background:var(--navy);color:var(--white)}
+.projects-carousel{
+    position:relative;flex:1;width:100%;overflow:hidden;
+    padding:30px 0 45px;perspective:1400px;
+    touch-action:pan-y;user-select:none;-webkit-user-select:none;
+}
+.carousel-track{
+    position:relative;display:block;min-height:520px;
+    transform-style:preserve-3d;
+}
+.carousel-card{
+    position:absolute;left:50%;top:50%;
+    width:330px;min-height:470px;
+    background:var(--white);border-radius:24px;overflow:hidden;
+    box-shadow:0 16px 42px rgba(7,26,45,.10);
+    transform-origin:center center;
+    transition:
+      transform .45s cubic-bezier(.22,.61,.36,1),
+      opacity .45s ease,filter .45s ease,box-shadow .45s ease;
+    user-select:none;-webkit-user-select:none;
+    will-change:transform,opacity,filter;
+}
+.carousel-card .project-image{
+    position:relative;width:100%;height:215px;
+    display:block;overflow:hidden;
+}
+.carousel-card .project-image img{width:100%;height:100%;object-fit:cover}
+.carousel-card.is-active{
+    z-index:10;opacity:1;filter:none;
+    transform:translate(-50%,-50%) translate3d(0,0,0) scale(1.08);
+    box-shadow:0 24px 60px rgba(7,26,45,.18);
+    pointer-events:auto;
+}
+.carousel-card.is-prev{
+    z-index:6;opacity:.55;
+    transform:translate(-50%,-50%) translate3d(-55%,0,-90px) rotateY(10deg) scale(.78);
+    pointer-events:none;
+}
+.carousel-card.is-next{
+    z-index:6;opacity:.55;
+    transform:translate(-50%,-50%) translate3d(55%,0,-90px) rotateY(-10deg) scale(.78);
+    pointer-events:none;
+}
+.carousel-card.is-hidden{
+    z-index:1;opacity:.12;
+    transform:translate(-50%,-50%) translate3d(0,0,-180px) scale(.58);
+    filter:blur(1px) saturate(.45);
+    pointer-events:none;
+}
 
 /* PROFILE */
 .profile-section{padding:96px 0;background:var(--cream)}
@@ -254,364 +261,51 @@ img{max-width:100%;display:block}
 /* RESPONSIVE */
 @media(max-width:950px){
     .hero-inner{grid-template-columns:1fr;gap:42px}
-    .hero-sector{max-width:500px;grid-template-columns:repeat(2,1fr)}
     .skills-grid{grid-template-columns:repeat(2,1fr)}
     .section-heading{grid-template-columns:1fr;gap:22px}
     .profile-grid{grid-template-columns:1fr;gap:42px}
-
-    .carousel-card{width:min(330px,40vw)}
-    .carousel-card.is-prev{transform:translate(calc(-50% - 205px),-50%) rotateY(9deg) scale(.75)}
-    .carousel-card.is-next{transform:translate(calc(-50% + 205px),-50%) rotateY(-9deg) scale(.75)}
+    .carousel-card{width:330px}
+    .carousel-card.is-prev{transform:translate(-50%,-50%) translate3d(-48%,0,-80px) rotateY(8deg) scale(.72)}
+    .carousel-card.is-next{transform:translate(-50%,-50%) translate3d(48%,0,-80px) rotateY(-8deg) scale(.72)}
 }
-
 @media(max-width:760px){
     .container{width:min(100% - 32px,var(--max-width))}
     .nav-container{min-height:68px}
     .menu-toggle{display:block}
-    .main-nav{position:absolute;top:68px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:15px 16px 20px;background:var(--navy);border-top:1px solid var(--dark-line)}
+    .main-nav{
+        position:absolute;top:68px;left:0;right:0;display:none;
+        flex-direction:column;align-items:stretch;padding:15px 16px 20px;
+        background:var(--navy);border-top:1px solid var(--dark-line)
+    }
     .main-nav.is-open{display:flex}
     .main-nav a{padding:10px 4px}
     .nav-cv{text-align:center}
-
     .hero{min-height:680px;padding:74px 0}
-    .hero-bg{background:linear-gradient(180deg,rgba(7,26,45,.97) 0%,rgba(7,26,45,.84) 55%,rgba(7,26,45,.93) 100%),url("../../images/hero-evenement-tourisme.png") center/cover no-repeat}
+    .hero-bg{
+        background:
+          linear-gradient(180deg,rgba(7,26,45,.97) 0%,rgba(7,26,45,.84) 55%,rgba(7,26,45,.93) 100%),
+          url("../../images/hero-evenement-tourisme.png") center/cover no-repeat
+    }
     .hero h1{font-size:clamp(2.65rem,11vw,4.5rem)}
     .hero-text{font-size:.94rem}
-    .hero-sector{grid-template-columns:1fr 1fr;padding-left:17px}
-
     .skills-intro,.projects-section,.profile-section,.contact-section{padding:68px 0}
     .skills-grid{grid-template-columns:1fr}
-
+    .carousel-wrapper{gap:8px}
+    .carousel-arrow{flex-basis:38px;width:38px;height:38px}
     .projects-carousel{padding-top:18px}
     .carousel-track{min-height:455px}
     .carousel-card{width:min(78vw,350px)}
     .carousel-card.is-active{transform:translate(-50%,-50%) scale(1.04)}
-    .carousel-card.is-prev{transform:translate(calc(-50% - 225px),-50%) rotateY(8deg) scale(.64);opacity:.17}
-    .carousel-card.is-next{transform:translate(calc(-50% + 225px),-50%) rotateY(-8deg) scale(.64);opacity:.17}
+    .carousel-card.is-prev{transform:translate(-50%,-50%) translate3d(-64%,0,-100px) rotateY(8deg) scale(.64);opacity:.17}
+    .carousel-card.is-next{transform:translate(-50%,-50%) translate3d(64%,0,-100px) rotateY(-8deg) scale(.64);opacity:.17}
     .carousel-card.is-hidden{opacity:0}
     .carousel-card .project-image{height:220px}
-
     .footer-content{flex-direction:column;gap:7px}
     .video-modal{padding:16px}
     .video-modal-close{top:-44px}
 }
-
 @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{transition:none!important;animation:none!important}
     .hero-bg,.skill-card,.carousel-track{transform:none!important}
-}
-/* =========================================================
-   CARROUSEL 3D — VERSION STABLE
-   Carte centrale dominante
-   Cartes latérales réduites et atténuées
-========================================================= */
-
-.projects-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 30px 0 45px;
-    perspective: 1400px;
-    touch-action: pan-y;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.carousel-track {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    min-height: 520px;
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-/* ---------------------------------------------------------
-   CARTES
---------------------------------------------------------- */
-
-.carousel-card {
-    position: relative;
-    flex: 0 0 330px;
-    width: 330px;
-    min-height: 470px;
-
-    background: var(--white);
-    border-radius: 24px;
-    overflow: hidden;
-
-    box-shadow:
-        0 16px 42px rgba(7,26,45,.10);
-
-    transform-origin: center center;
-
-    transition:
-        transform .45s cubic-bezier(.22,.61,.36,1),
-        opacity .45s ease,
-        filter .45s ease,
-        box-shadow .45s ease;
-
-    user-select: none;
-    -webkit-user-select: none;
-
-    will-change: transform, opacity, filter;
-}
-
-/* ---------------------------------------------------------
-   IMAGE
---------------------------------------------------------- */
-
-.carousel-card .project-image {
-    position: relative;
-
-    width: 100%;
-    height: 215px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    border-radius: 24px 24px 0 0;
-}
-
-.carousel-card .project-image img {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-
-    transition: transform .5s ease;
-}
-
-/* Affiches : ne pas couper le visuel */
-
-.carousel-card .project-image-poster img {
-    object-fit: contain;
-    padding: 10px;
-    background: #edf0f2;
-}
-
-/* ---------------------------------------------------------
-   CARTES LATÉRALES
-   Le JS peut modifier scale / translate :
-   ces règles donnent simplement une base visuelle.
---------------------------------------------------------- */
-
-.carousel-card:not(:nth-child(4)) {
-    opacity: .58;
-    filter: saturate(.72);
-}
-
-/* Les cartes éloignées doivent être discrètes */
-
-.carousel-card:nth-child(1),
-.carousel-card:nth-child(7) {
-    opacity: .30;
-    filter: saturate(.55) blur(.25px);
-}
-
-/* ---------------------------------------------------------
-   CARTE CENTRALE
-   Avec 7 cartes, la 4e est la position centrale initiale.
---------------------------------------------------------- */
-
-.carousel-card:nth-child(4) {
-    opacity: 1;
-    filter: none;
-
-    box-shadow:
-        0 24px 65px rgba(7,26,45,.18);
-
-    z-index: 10;
-}
-
-/* ---------------------------------------------------------
-   EFFET VISUEL AU SURVOL
---------------------------------------------------------- */
-
-@media (hover: hover) and (pointer: fine) {
-
-    .carousel-card:hover {
-        box-shadow:
-            0 25px 65px rgba(7,26,45,.17);
-    }
-
-    .carousel-card:hover .project-image img {
-        transform: scale(1.025);
-    }
-}
-
-/* ---------------------------------------------------------
-   ÉTIQUETTES / PLAY
---------------------------------------------------------- */
-
-.carousel-card .project-preview-label {
-    z-index: 5;
-}
-
-.carousel-card .play-badge {
-    z-index: 6;
-}
-
-/* ---------------------------------------------------------
-   INFORMATIONS
---------------------------------------------------------- */
-
-.carousel-card .project-info {
-    padding: 20px 22px 23px;
-}
-
-.carousel-card .project-info h3 {
-    font-size: 1.12rem;
-    line-height: 1.2;
-}
-
-.carousel-card .project-info p:not(.project-type) {
-    font-size: .8rem;
-}
-
-/* ---------------------------------------------------------
-   INDICATION
---------------------------------------------------------- */
-
-.carousel-hint {
-    margin: 0;
-
-    text-align: center;
-
-    color: var(--slate);
-
-    font-size: .7rem;
-    font-weight: 600;
-
-    letter-spacing: .04em;
-
-    opacity: .75;
-}
-
-/* =========================================================
-   TABLETTE
-========================================================= */
-
-@media (max-width: 950px) {
-
-    .projects-carousel {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .carousel-track {
-        gap: 20px;
-        min-height: 490px;
-    }
-
-    .carousel-card {
-        flex-basis: 300px;
-        width: 300px;
-        min-height: 445px;
-    }
-
-    .carousel-card .project-image {
-        height: 200px;
-    }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 760px) {
-
-    .projects-carousel {
-        padding-top: 20px;
-        padding-bottom: 35px;
-
-        perspective: 1000px;
-    }
-
-    .carousel-track {
-        gap: 14px;
-        min-height: 470px;
-    }
-
-    .carousel-card {
-        flex-basis: 285px;
-        width: 285px;
-        min-height: 430px;
-
-        border-radius: 21px;
-    }
-
-    .carousel-card .project-image {
-        height: 195px;
-        border-radius: 21px 21px 0 0;
-    }
-
-    .carousel-card .project-info {
-        padding: 18px 19px 20px;
-    }
-
-    /*
-       Sur mobile, les cartes éloignées sont encore
-       moins présentes visuellement.
-    */
-
-    .carousel-card:not(:nth-child(4)) {
-        opacity: .42;
-    }
-
-    .carousel-card:nth-child(1),
-    .carousel-card:nth-child(7) {
-        opacity: .20;
-    }
-
-    .carousel-hint {
-        font-size: .65rem;
-    }
-}
-
-
-/* =========================================================
-   PETITS ÉCRANS
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .carousel-track {
-        min-height: 450px;
-    }
-
-    .carousel-card {
-        flex-basis: 270px;
-        width: 270px;
-        min-height: 415px;
-    }
-
-    .carousel-card .project-image {
-        height: 185px;
-    }
-}
-
-
-/* =========================================================
-   ACCESSIBILITÉ
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .carousel-card,
-    .carousel-card .project-image img {
-        transition: none !important;
-    }
 }
