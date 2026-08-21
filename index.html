@@ -400,7 +400,7 @@
 
                     <article class="carousel-card">
 
-                        <a href="./images/Planche%20com%20festival%20Slam.png"
+                        <a href="images/Planche%20com%20festival%20Slam.png"
                            class="project-image project-image-poster"
                            target="_blank"
                            rel="noopener"
@@ -428,7 +428,7 @@
                                 et déclinaisons print.
                             </p>
 
-                            <a href="./images/Planche%20com%20festival%20Slam.png"
+                            <a href="images/Planche%20com%20festival%20Slam.png"
                                class="project-link"
                                target="_blank"
                                rel="noopener">
@@ -446,7 +446,7 @@
 
                     <article class="carousel-card">
 
-                        <a href="./theatre.html"
+                        <a href="theatre.html"
                            class="project-image project-preview-link"
                            aria-label="Voir les affiches de théâtre et leurs vidéos">
 
@@ -478,7 +478,7 @@
                                 aux réseaux sociaux.
                             </p>
 
-                            <a href="./theatre.html"
+                            <a href="theatre.html"
                                class="project-link">
                                 Voir le projet →
                             </a>
@@ -592,7 +592,7 @@
 
                     <article class="carousel-card">
 
-                        <a href="./cannet.html"
+                        <a href="cannet.html"
                            class="project-image project-preview-link"
                            aria-label="Voir le projet audiovisuel de la Ville du Cannet">
 
@@ -624,7 +624,7 @@
                                 à valoriser la ville du Cannet.
                             </p>
 
-                            <a href="./cannet.html"
+                            <a href="cannet.html"
                                class="project-link">
                                 Voir le projet →
                             </a>
@@ -646,6 +646,10 @@
             </button>
 
         </div>
+
+    </div>
+
+</section>
 
 
 <!-- =========================================================
@@ -891,32 +895,28 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const track = document.querySelector(".carousel-track");
-    const cards = Array.from(document.querySelectorAll(".carousel-card"));
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = [...document.querySelectorAll(".carousel-card")];
     const prev = document.querySelector(".carousel-prev");
     const next = document.querySelector(".carousel-next");
 
-    if (!track || !cards.length) return;
+    if (!cards.length) return;
 
     let current = 0;
 
     function updateCarousel() {
+        const total = cards.length;
+
         cards.forEach((card, index) => {
-            card.classList.remove(
-                "is-center",
-                "is-left",
-                "is-right",
-                "is-hidden"
-            );
+            const offset = (index - current + total) % total;
 
-            const delta = (index - current + cards.length) % cards.length;
+            card.classList.remove("is-center", "is-left", "is-right", "is-hidden");
 
-            if (delta === 0) {
+            if (offset === 0) {
                 card.classList.add("is-center");
-            } else if (delta === 1 || delta === -(cards.length - 1)) {
+            } else if (offset === 1) {
                 card.classList.add("is-right");
-            } else if (delta === cards.length - 1 || delta === -(cards.length - 1)) {
+            } else if (offset === total - 1) {
                 card.classList.add("is-left");
             } else {
                 card.classList.add("is-hidden");
@@ -924,49 +924,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    function goNext() {
-        current = (current + 1) % cards.length;
-        updateCarousel();
-    }
-
-    function goPrev() {
+    prev?.addEventListener("click", () => {
         current = (current - 1 + cards.length) % cards.length;
         updateCarousel();
-    }
+    });
 
-    if (next) {
-        next.addEventListener("click", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            goNext();
-        });
-    }
-
-    if (prev) {
-        prev.addEventListener("click", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            goPrev();
-        });
-    }
-
-    // IMPORTANT:
-    // We deliberately do NOT add any drag/pointerdown handler.
-    // Native links and YouTube buttons therefore remain clickable.
-    cards.forEach(function (card) {
-        card.addEventListener("click", function (event) {
-            if (
-                event.target.closest("a") ||
-                event.target.closest("button")
-            ) {
-                return;
-            }
-
-            // Non-interactive areas of cards do nothing.
-            if (!card.classList.contains("is-center")) {
-                event.preventDefault();
-            }
-        });
+    next?.addEventListener("click", () => {
+        current = (current + 1) % cards.length;
+        updateCarousel();
     });
 
     updateCarousel();
