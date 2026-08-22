@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Affiches de théâtre animées — Stéphane Njockum</title>
+<meta name="description" content="Projet de motion design : transformation d'affiches de théâtre en teasers vidéo pour les réseaux sociaux.">
+
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+.theatre-page{
+    padding:80px 0 100px;
+    background:var(--cream);
+}
+
+.theatre-header{
+    max-width:820px;
+    margin-bottom:48px;
+}
+
+.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:28px;
+    color:var(--slate);
+    font-size:.78rem;
+    font-weight:750;
+}
+
+.back-link:hover{color:var(--blue);}
+
+.theatre-header h1{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:clamp(2.4rem,5vw,4.5rem);
+    line-height:1;
+    letter-spacing:-.05em;
+}
+
+.theatre-header p:not(.eyebrow){
+    max-width:700px;
+    margin:22px 0 0;
+    color:var(--slate);
+    font-size:1rem;
+}
+
+/* UNE CARTE = UNE AFFICHE + SA VIDÉO */
+.theatre-list{
+    display:grid;
+    gap:34px;
+}
+
+.theatre-card{
+    overflow:hidden;
+    background:var(--white);
+    border-radius:22px;
+    box-shadow:0 12px 35px rgba(7,26,45,.08);
+    border:1px solid var(--line);
+}
+
+.theatre-card-header{
+    padding:24px 26px 18px;
+}
+
+.theatre-type{
+    margin:0 0 7px;
+    color:var(--slate);
+    font-size:.63rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+.theatre-card-header h2{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:1.45rem;
+    line-height:1.15;
+}
+
+.theatre-card-header p{
+    max-width:700px;
+    margin:10px 0 0;
+    color:var(--slate);
+    font-size:.84rem;
+}
+
+.theatre-media{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-top:1px solid var(--line);
+}
+
+.media-panel{
+    min-width:0;
+    background:#edf0f2;
+}
+
+.media-panel + .media-panel{
+    border-left:1px solid var(--line);
+}
+
+.media-label{
+    padding:13px 18px;
+    background:#f7f8f8;
+    color:var(--navy);
+    font-size:.65rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+.poster-view{
+    display:block;
+    height:430px;
+    padding:18px;
+    background:#edf0f2;
+}
+
+.poster-view img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    transition:transform .3s ease;
+}
+
+.poster-view:hover img{
+    transform:scale(1.015);
+}
+
+.video-view{
+    position:relative;
+    display:block;
+    height:430px;
+    overflow:hidden;
+    background:#071a2d;
+}
+
+.video-view::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(135deg,rgba(7,26,45,.05),rgba(7,26,45,.38));
+    pointer-events:none;
+}
+
+.video-view img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+}
+
+.video-view:hover img{
+    transform:scale(1.025);
+}
+
+.video-play{
+    position:absolute;
+    z-index:2;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:62px;
+    height:62px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:50%;
+    background:rgba(7,26,45,.55);
+    color:#fff;
+    font-size:1.15rem;
+    transition:transform .2s ease,background .2s ease;
+}
+
+.video-view:hover .video-play{
+    transform:translate(-50%,-50%) scale(1.08);
+    background:rgba(47,140,255,.85);
+}
+
+.video-caption{
+    padding:14px 18px 17px;
+    color:var(--slate);
+    font-size:.74rem;
+}
+
+.video-caption strong{
+    color:var(--navy);
+}
+
+@media(max-width:760px){
+    .theatre-page{padding:58px 0 75px;}
+
+    .theatre-media{
+        grid-template-columns:1fr;
+    }
+
+    .media-panel + .media-panel{
+        border-left:0;
+        border-top:1px solid var(--line);
+    }
+
+    .poster-view,
+    .video-view{
+        height:390px;
+    }
+}
+
+/* ===== FENÊTRE VIDÉO ===== */
+.video-trigger{
+    border:0;
+    margin:0;
+    width:100%;
+    font:inherit;
+    text-align:inherit;
+    cursor:pointer;
+}
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+}
+
+.video-modal.is-open{
+    display:flex;
+}
+
+.video-modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(2,9,16,.88);
+    backdrop-filter:blur(6px);
+}
+
+.video-modal-dialog{
+    position:relative;
+    z-index:1;
+    width:min(50vw,520px);
+    max-height:92vh;
+}
+
+.video-modal-frame{
+    width:100%;
+    aspect-ratio:9 / 16;
+    background:#000;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.video-modal-frame iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
+}
+
+.video-modal-close{
+    position:absolute;
+    right:-14px;
+    top:-48px;
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    color:#fff;
+    font-size:1.45rem;
+    line-height:1;
+    cursor:pointer;
+}
+
+.video-modal-close:hover{
+    background:#2f8cff;
+    color:#071a2d;
+}
+
+@media(max-width:560px){
+    .video-modal{
+        padding:16px;
+    }
+
+    .video-modal-dialog{
+        width:min(88vw,520px);
+    }
+
+    .video-modal-close{
+        right:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="index.html#accueil" class="brand" aria-label="Retour à l'accueil">
+            <span class="brand-name">STÉPHANE NJOCKUM</span>
+            <span class="brand-role">Communication digitale</span>
+        </a>
+
+        <button class="menu-toggle"
+                type="button"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Navigation principale">
+            <a href="index.html#realisations">Réalisations</a>
+            <a href="index.html#profil">Profil</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="https://drive.google.com/file/d/1v45Y2KeQCJF-aRF8UZEJOVozfK1SP9J_/view?usp=drive_link"
+               class="nav-cv" target="_blank" rel="noopener">CV ↗</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<section class="theatre-page">
+    <div class="container">
+
+        <div class="theatre-header">
+            <a href="index.html#realisations" class="back-link">← Retour aux réalisations</a>
+
+            <p class="eyebrow">MOTION DESIGN · SOCIAL MEDIA</p>
+
+            <h1>Affiches de théâtre animées</h1>
+
+            <p>
+                Deux études de motion design à partir d'affiches événementielles.
+                Pour chaque projet, l'affiche originale est présentée séparément
+                de sa déclinaison vidéo afin de visualiser clairement le travail
+                de transformation du support print en contenu animé.
+            </p>
+        </div>
+
+        <div class="theatre-list">
+
+            <!-- PROJET 1 -->
+            <article class="theatre-card">
+
+                <div class="theatre-card-header">
+                    <p class="theatre-type">Projet 01 · Motion design</p>
+                    <h2>Les Magiciens c'est nous</h2>
+                    <p>
+                        Affiche originale puis teaser animé correspondant,
+                        conçu pour une diffusion courte sur les réseaux sociaux.
+                    </p>
+                </div>
+
+                <div class="theatre-media">
+
+                    <div class="media-panel">
+                        <div class="media-label">Affiche originale</div>
+
+                        <a class="poster-view"
+                           href="images/Les%20magiciens%20c'est%20nous.png"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Ouvrir l'affiche Les Magiciens c'est nous en grand">
+                            <img src="images/Les%20magiciens%20c'est%20nous.png"
+                                 alt="Affiche originale Les Magiciens c'est nous"
+                                 loading="lazy">
+                        </a>
+                    </div>
+
+                    <div class="media-panel">
+                        <div class="media-label">Vidéo · Teaser animé</div>
+
+                        <button class="video-view video-trigger"
+                                type="button"
+                                data-video-id="XkuQ5n2Jefg"
+                                data-video-format="vertical"
+                                data-video-provider="youtube"
+                                data-video-title="Les Magiciens c'est nous — teaser animé"
+                                aria-label="Lire le teaser vidéo Les Magiciens c'est nous">
+
+                            <img src="https://img.youtube.com/vi/XkuQ5n2Jefg/hqdefault.jpg"
+                                 alt="Aperçu vidéo du teaser Les Magiciens c'est nous"
+                                 loading="lazy">
+
+                            <span class="video-play">▶</span>
+                        </button>
+
+                        <div class="video-caption">
+                            <strong>Teaser animé</strong> · format vertical / social media
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- PROJET 2 -->
+            <article class="theatre-card">
+
+                <div class="theatre-card-header">
+                    <p class="theatre-type">Projet 02 · Motion design</p>
+                    <h2>Secret Story Seniors</h2>
+                    <p>
+                        Affiche originale puis teaser animé correspondant,
+                        avec adaptation du visuel au rythme et au format vidéo.
+                    </p>
+                </div>
+
+                <div class="theatre-media">
+
+                    <div class="media-panel">
+                        <div class="media-label">Affiche originale</div>
+
+                        <a class="poster-view"
+                           href="images/secret-story-seniors.png"
+                           target="_blank"
+                           rel="noopener"
+                           aria-label="Ouvrir l'affiche Secret Story Seniors en grand">
+                            <img src="images/secret-story-seniors.png"
+                                 alt="Affiche originale Secret Story Seniors"
+                                 loading="lazy">
+                        </button>
+                    </div>
+
+                    <div class="media-panel">
+                        <div class="media-label">Vidéo · Teaser animé</div>
+
+                        <button class="video-view video-trigger"
+                                type="button"
+                                data-video-id="nFksEGiptuY"
+                                data-video-format="vertical"
+                                data-video-provider="youtube"
+                                data-video-title="Secret Story Seniors — teaser animé"
+                                aria-label="Lire le teaser vidéo Secret Story Seniors">
+
+                            <img src="https://img.youtube.com/vi/nFksEGiptuY/hqdefault.jpg"
+                                 alt="Aperçu vidéo du teaser Secret Story Seniors"
+                                 loading="lazy">
+
+                            <span class="video-play">▶</span>
+                        </a>
+
+                        <div class="video-caption">
+                            <strong>Teaser animé</strong> · format vertical / social media
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <p>© 2026 Stéphane Njockum</p>
+        <p>Communication digitale · Création de contenus · Événementiel</p>
+    </div>
+</footer>
+
+
+<!-- FENÊTRE VIDÉO — une seule modale pour les deux teasers -->
+<div class="video-modal" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="video-modal-backdrop" data-close-video></div>
+
+    <div class="video-modal-dialog">
+        <button class="video-modal-close"
+                type="button"
+                data-close-video
+                aria-label="Fermer la vidéo">×</button>
+
+        <div class="video-modal-frame">
+            <iframe id="videoModalFrame"
+                    title="Vidéo"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+
+
+<script>
+(function(){
+    const modal = document.getElementById("videoModal");
+    const frame = document.getElementById("videoModalFrame");
+    if(!modal || !frame) return;
+
+    const dialog = modal.querySelector(".video-modal-dialog");
+
+    function openVideo(id, title){
+        if(!id) return;
+
+        frame.src =
+            "https://www.youtube.com/embed/" +
+            encodeURIComponent(id) +
+            "?autoplay=1&rel=0&modestbranding=1";
+
+        frame.title = title || "Vidéo";
+
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden","false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeVideo(){
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden","true");
+        frame.src = "";
+        document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".video-trigger").forEach(function(button){
+        button.addEventListener("click", function(){
+            openVideo(
+                button.dataset.videoId,
+                button.dataset.videoTitle
+            );
+        });
+    });
+
+    document.querySelectorAll("[data-close-video]").forEach(function(el){
+        el.addEventListener("click", closeVideo);
+    });
+
+    document.addEventListener("keydown", function(event){
+        if(event.key === "Escape" && modal.classList.contains("is-open")){
+            closeVideo();
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
