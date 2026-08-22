@@ -215,6 +215,93 @@
         height:390px;
     }
 }
+
+/* ===== FENÊTRE VIDÉO ===== */
+.video-trigger{
+    border:0;
+    margin:0;
+    width:100%;
+    font:inherit;
+    text-align:inherit;
+    cursor:pointer;
+}
+
+.video-modal{
+    position:fixed;
+    inset:0;
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+}
+
+.video-modal.is-open{
+    display:flex;
+}
+
+.video-modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(2,9,16,.88);
+    backdrop-filter:blur(6px);
+}
+
+.video-modal-dialog{
+    position:relative;
+    z-index:1;
+    width:min(50vw,520px);
+    max-height:92vh;
+}
+
+.video-modal-frame{
+    width:100%;
+    aspect-ratio:9 / 16;
+    background:#000;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.video-modal-frame iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
+}
+
+.video-modal-close{
+    position:absolute;
+    right:-14px;
+    top:-48px;
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    color:#fff;
+    font-size:1.45rem;
+    line-height:1;
+    cursor:pointer;
+}
+
+.video-modal-close:hover{
+    background:#2f8cff;
+    color:#071a2d;
+}
+
+@media(max-width:560px){
+    .video-modal{
+        padding:16px;
+    }
+
+    .video-modal-dialog{
+        width:min(88vw,520px);
+    }
+
+    .video-modal-close{
+        right:0;
+    }
+}
+
 </style>
 </head>
 
@@ -299,18 +386,20 @@
                     <div class="media-panel">
                         <div class="media-label">Vidéo · Teaser animé</div>
 
-                        <a class="video-view"
-                           href="https://vimeo.com/1220456408?share=copy&fl=sv&fe=ci"
-                           target="_blank"
-                           rel="noopener"
-                           aria-label="Voir le teaser vidéo Les Magiciens c'est nous">
+                        <button class="video-view video-trigger"
+                                type="button"
+                                data-video-id="XkuQ5n2Jefg"
+                                data-video-format="vertical"
+                                data-video-provider="youtube"
+                                data-video-title="Les Magiciens c'est nous — teaser animé"
+                                aria-label="Lire le teaser vidéo Les Magiciens c'est nous">
 
                             <img src="https://img.youtube.com/vi/XkuQ5n2Jefg/hqdefault.jpg"
                                  alt="Aperçu vidéo du teaser Les Magiciens c'est nous"
                                  loading="lazy">
 
                             <span class="video-play">▶</span>
-                        </a>
+                        </button>
 
                         <div class="video-caption">
                             <strong>Teaser animé</strong> · format vertical / social media
@@ -346,17 +435,19 @@
                             <img src="images/secret-story-seniors.png"
                                  alt="Affiche originale Secret Story Seniors"
                                  loading="lazy">
-                        </a>
+                        </button>
                     </div>
 
                     <div class="media-panel">
                         <div class="media-label">Vidéo · Teaser animé</div>
 
-                        <a class="video-view"
-                           href="https://youtube.com/shorts/nFksEGiptuY?feature=share"
-                           target="_blank"
-                           rel="noopener"
-                           aria-label="Voir le teaser vidéo Secret Story Seniors">
+                        <button class="video-view video-trigger"
+                                type="button"
+                                data-video-id="nFksEGiptuY"
+                                data-video-format="vertical"
+                                data-video-provider="youtube"
+                                data-video-title="Secret Story Seniors — teaser animé"
+                                aria-label="Lire le teaser vidéo Secret Story Seniors">
 
                             <img src="https://img.youtube.com/vi/nFksEGiptuY/hqdefault.jpg"
                                  alt="Aperçu vidéo du teaser Secret Story Seniors"
@@ -386,7 +477,79 @@
     </div>
 </footer>
 
+
+<!-- FENÊTRE VIDÉO — une seule modale pour les deux teasers -->
+<div class="video-modal" id="videoModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="video-modal-backdrop" data-close-video></div>
+
+    <div class="video-modal-dialog">
+        <button class="video-modal-close"
+                type="button"
+                data-close-video
+                aria-label="Fermer la vidéo">×</button>
+
+        <div class="video-modal-frame">
+            <iframe id="videoModalFrame"
+                    title="Vidéo"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
 <script src="assets/js/main.js"></script>
+
+
+<script>
+(function(){
+    const modal = document.getElementById("videoModal");
+    const frame = document.getElementById("videoModalFrame");
+    if(!modal || !frame) return;
+
+    const dialog = modal.querySelector(".video-modal-dialog");
+
+    function openVideo(id, title){
+        if(!id) return;
+
+        frame.src =
+            "https://www.youtube.com/embed/" +
+            encodeURIComponent(id) +
+            "?autoplay=1&rel=0&modestbranding=1";
+
+        frame.title = title || "Vidéo";
+
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden","false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeVideo(){
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden","true");
+        frame.src = "";
+        document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".video-trigger").forEach(function(button){
+        button.addEventListener("click", function(){
+            openVideo(
+                button.dataset.videoId,
+                button.dataset.videoTitle
+            );
+        });
+    });
+
+    document.querySelectorAll("[data-close-video]").forEach(function(el){
+        el.addEventListener("click", closeVideo);
+    });
+
+    document.addEventListener("keydown", function(event){
+        if(event.key === "Escape" && modal.classList.contains("is-open")){
+            closeVideo();
+        }
+    });
+})();
+</script>
 
 </body>
 </html>
