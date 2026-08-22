@@ -808,149 +808,202 @@ img{max-width:100%;display:block}
     }
 
 
-    /* =====================================================
-       CARROUSEL SMARTPHONE
-       La zone centrale respecte strictement le conteneur.
-       Pas de glissé tactile.
-    ===================================================== */
+    /* /* =====================================================
+   CARROUSEL SMARTPHONE
+   Cartes indépendantes de la largeur entre les flèches
+===================================================== */
 
-    .carousel-wrapper{
-        width:100%;
-        max-width:100%;
-        display:flex;
-        align-items:center;
-        gap:4px;
-    }
-
-
-    /* Flèches */
-
-    .carousel-arrow{
-        flex:0 0 32px;
-        width:32px;
-        height:32px;
-        padding:0;
-
-        display:grid;
-        place-items:center;
-
-        font-size:1.4rem;
-        line-height:1;
-    }
+.carousel-wrapper{
+    position:relative;
+    width:100%;
+    max-width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0;
+}
 
 
-    /* Zone réellement disponible pour les cartes */
+/* -----------------------------------------------------
+   ZONE DU CARROUSEL
+----------------------------------------------------- */
 
-    .projects-carousel{
-        flex:1 1 auto;
-        width:0;
-        min-width:0;
-        max-width:100%;
+.projects-carousel{
+    position:relative;
 
-        overflow:hidden;
+    /*
+       La zone centrale occupe toute la largeur.
+       Les cartes ne sont PAS dimensionnées par
+       l'espace disponible entre les flèches.
+    */
+    flex:1 1 100%;
+    width:100%;
+    min-width:0;
 
-        padding:20px 0 38px;
+    overflow:visible;
 
-        perspective:1000px;
+    padding:20px 0 38px;
 
-        touch-action:pan-y;
-    }
-
-
-    /* Zone de positionnement */
-
-    .carousel-track{
-        position:relative;
-        width:100%;
-        min-height:430px;
-    }
+    perspective:1200px;
+    touch-action:pan-y;
+}
 
 
-    /* Carte */
+/* -----------------------------------------------------
+   TRACK
+----------------------------------------------------- */
 
-    .carousel-card{
-        width:calc(100% - 20px);
-        max-width:290px;
-        min-height:400px;
+.carousel-track{
+    position:relative;
+    width:100%;
+    min-height:430px;
 
-        border-radius:18px;
-    }
-
-
-    /* Image */
-
-    .carousel-card .project-image{
-        height:180px;
-    }
+    overflow:visible;
+}
 
 
-    /* Carte centrale */
+/* -----------------------------------------------------
+   CARTES
+   Environ moitié de la largeur d'un smartphone
+----------------------------------------------------- */
 
-    .carousel-card.is-active{
-        transform:
-            translate(-50%,-50%)
-            scale(1);
+.carousel-card{
+    position:absolute;
 
-        opacity:1;
-        filter:none;
+    left:50%;
+    top:50%;
 
-        pointer-events:auto;
-    }
+    width:55vw;
+    max-width:220px;
+    min-width:190px;
 
+    min-height:380px;
 
-    /* Carte précédente */
-
-    .carousel-card.is-prev{
-        transform:
-            translate(-50%,-50%)
-            translate3d(-75%,0,-80px)
-            rotateY(6deg)
-            scale(.65);
-
-        opacity:.18;
-        pointer-events:none;
-    }
+    border-radius:18px;
+}
 
 
-    /* Carte suivante */
+/* -----------------------------------------------------
+   CARTE CENTRALE
+----------------------------------------------------- */
 
-    .carousel-card.is-next{
-        transform:
-            translate(-50%,-50%)
-            translate3d(75%,0,-80px)
-            rotateY(-6deg)
-            scale(.65);
+.carousel-card.is-active{
+    z-index:30;
 
-        opacity:.18;
-        pointer-events:none;
-    }
+    transform:
+        translate(-50%,-50%)
+        scale(1);
 
+    opacity:1;
+    filter:none;
 
-    /* Cartes éloignées */
-
-    .carousel-card.is-hidden{
-        opacity:0;
-        pointer-events:none;
-    }
+    pointer-events:auto;
+}
 
 
-    /* Contenu des cartes */
+/* -----------------------------------------------------
+   CARTE GAUCHE
+----------------------------------------------------- */
 
-    .project-info{
-        padding:15px 16px 17px;
-    }
+.carousel-card.is-prev{
+    z-index:20;
 
-    .project-info h3{
-        font-size:1rem;
-    }
+    transform:
+        translate(-50%,-50%)
+        translate3d(-105%,0,-100px)
+        rotateY(8deg)
+        scale(.72);
 
-    .project-info p:not(.project-type){
-        font-size:.76rem;
-    }
+    opacity:.20;
+    pointer-events:none;
+}
 
-    .project-link{
-        font-size:.7rem;
-    }
+
+/* -----------------------------------------------------
+   CARTE DROITE
+----------------------------------------------------- */
+
+.carousel-card.is-next{
+    z-index:20;
+
+    transform:
+        translate(-50%,-50%)
+        translate3d(105%,0,-100px)
+        rotateY(-8deg)
+        scale(.72);
+
+    opacity:.20;
+    pointer-events:none;
+}
+
+
+/* -----------------------------------------------------
+   AUTRES CARTES
+----------------------------------------------------- */
+
+.carousel-card.is-hidden{
+    z-index:1;
+
+    opacity:0;
+    pointer-events:none;
+}
+
+
+/* -----------------------------------------------------
+   IMAGE
+----------------------------------------------------- */
+
+.carousel-card .project-image{
+    height:150px;
+}
+
+
+/* -----------------------------------------------------
+   CONTENU
+----------------------------------------------------- */
+
+.carousel-card .project-info{
+    padding:14px 15px 16px;
+}
+
+.carousel-card .project-info h3{
+    font-size:.95rem;
+}
+
+.carousel-card .project-info p:not(.project-type){
+    font-size:.72rem;
+    line-height:1.4;
+}
+
+.carousel-card .project-type{
+    font-size:.58rem;
+}
+
+.carousel-card .project-link{
+    font-size:.67rem;
+}
+
+
+/* -----------------------------------------------------
+   FLÈCHES
+----------------------------------------------------- */
+
+.carousel-arrow{
+    position:relative;
+    z-index:100;
+
+    flex:0 0 32px;
+
+    width:32px;
+    height:32px;
+
+    padding:0;
+
+    display:grid;
+    place-items:center;
+
+    font-size:1.35rem;
+}
 
 
     /* -----------------------------------------------------
