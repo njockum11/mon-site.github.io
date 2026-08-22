@@ -1417,3 +1417,53 @@ img{max-width:100%;display:block}
         transform:none!important;
     }
 }
+/* =========================================================
+   CORRECTION MOBILE — EMPÊCHER LE DÉBORDEMENT DU CARROUSEL
+========================================================= */
+
+@media (max-width: 760px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .projects-section {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .projects-section .container {
+        width: calc(100% - 32px);
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .projects-carousel {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-card {
+        max-width: 210px;
+    }
+}
