@@ -717,49 +717,49 @@ img{max-width:100%;display:block}
    RESPONSIVE — SMARTPHONE
 ========================================================= */
 
-@media(max-width:760px){
+@@media(max-width:760px){
 
-    .container{
-        width:calc(100% - 32px);
-        max-width:var(--max-width);
-    }
-
-    /* -----------------------------------------------------
-       HEADER
-    ----------------------------------------------------- */
-
-    .nav-container{
-        min-height:68px;
-    }
-
-    .menu-toggle{
+    .carousel-wrapper{
+        position:relative;
+        width:100%;
         display:block;
     }
 
-    .main-nav{
+    .projects-carousel{
+        position:relative;
+        width:100%;
+        max-width:100%;
+        overflow:hidden;
+        padding:20px 0 40px;
+        perspective:1200px;
+    }
+
+    .carousel-track{
+        width:100%;
+        min-height:455px;
+    }
+
+    .carousel-card{
+        width:240px;
+        min-height:400px;
+    }
+
+    .carousel-arrow{
         position:absolute;
-        top:68px;
+        top:50%;
+        z-index:100;
+        width:36px;
+        height:36px;
+    }
+
+    .carousel-prev{
         left:0;
+    }
+
+    .carousel-next{
         right:0;
-        display:none;
-        flex-direction:column;
-        align-items:stretch;
-        padding:15px 16px 20px;
-        background:var(--navy);
-        border-top:1px solid var(--dark-line);
     }
-
-    .main-nav.is-open{
-        display:flex;
-    }
-
-    .main-nav a{
-        padding:10px 4px;
-    }
-
-    .nav-cv{
-        text-align:center;
-    }
+}
 
 
     /* -----------------------------------------------------
