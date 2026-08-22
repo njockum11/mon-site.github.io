@@ -1,7 +1,7 @@
 /* =========================================================
    STÉPHANE NJOCKUM — PORTFOLIO
-   MAIN CSS + CARROUSEL 3D
-   Version cohérente avec index.html
+   MAIN CSS
+   VERSION STABLE — CARROUSEL + RESPONSIVE
 ========================================================= */
 
 :root{
@@ -13,15 +13,29 @@
     --slate:#5e6d7b;
     --line:rgba(7,26,45,.13);
     --dark-line:rgba(255,255,255,.14);
+
     --max-width:1180px;
     --radius:22px;
+
     --font-main:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     --font-display:"Manrope","Inter",sans-serif;
 }
 
-*{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
 
 body{
     margin:0;
@@ -29,19 +43,32 @@ body{
     color:var(--navy);
     font-family:var(--font-main);
     line-height:1.6;
+    overflow-x:hidden;
 }
 
-body,button,a{font-family:var(--font-main)}
+body,
+button,
+a{
+    font-family:var(--font-main);
+}
 
-a{color:inherit;text-decoration:none}
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-button{border:0}
+button{
+    border:0;
+}
 
-img{max-width:100%;display:block}
+img{
+    max-width:100%;
+    display:block;
+}
 
 .container{
-    width:min(100% - 48px,var(--max-width));
-    margin:0 auto;
+    width:min(calc(100% - 48px),var(--max-width));
+    margin-inline:auto;
 }
 
 
@@ -53,16 +80,20 @@ img{max-width:100%;display:block}
     position:sticky;
     top:0;
     z-index:1000;
+
     background:rgba(7,26,45,.96);
     backdrop-filter:blur(12px);
+
     border-bottom:1px solid var(--dark-line);
 }
 
 .nav-container{
     min-height:76px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:28px;
 }
 
@@ -100,7 +131,9 @@ img{max-width:100%;display:block}
     transition:color .2s ease;
 }
 
-.main-nav a:hover{color:#78b7ff}
+.main-nav a:hover{
+    color:#78b7ff;
+}
 
 .nav-cv{
     padding:9px 15px;
@@ -137,9 +170,12 @@ img{max-width:100%;display:block}
 .hero{
     position:relative;
     min-height:620px;
+
     overflow:hidden;
+
     display:flex;
     align-items:center;
+
     background:var(--navy);
     color:var(--white);
 }
@@ -148,34 +184,53 @@ img{max-width:100%;display:block}
     position:absolute;
     inset:0;
     z-index:0;
+
     background:
-        linear-gradient(90deg,rgba(7,26,45,.97),rgba(7,26,45,.45)),
-        url("../../images/hero-evenement-tourisme.png") center right/cover no-repeat;
-    transition:transform .12s ease-out;
-    will-change:transform;
+        linear-gradient(
+            90deg,
+            rgba(7,26,45,.97),
+            rgba(7,26,45,.45)
+        ),
+        url("../../images/hero-evenement-tourisme.png")
+        center right / cover no-repeat;
 }
 
 .hero-bg::after{
     content:"";
     position:absolute;
     inset:0;
+
     background:
-        linear-gradient(115deg,transparent 42%,rgba(47,140,255,.13) 42.2%,transparent 42.7%),
-        linear-gradient(115deg,transparent 55%,rgba(47,140,255,.08) 55.2%,transparent 55.7%);
+        linear-gradient(
+            115deg,
+            transparent 42%,
+            rgba(47,140,255,.13) 42.2%,
+            transparent 42.7%
+        ),
+        linear-gradient(
+            115deg,
+            transparent 55%,
+            rgba(47,140,255,.08) 55.2%,
+            transparent 55.7%
+        );
 }
 
 .hero-inner{
     position:relative;
     z-index:1;
+
     display:grid;
     grid-template-columns:minmax(0,1.25fr) minmax(250px,.55fr);
+
     gap:60px;
     align-items:center;
 }
 
 .eyebrow{
     margin:0 0 16px;
+
     color:#5da9ff;
+
     font-size:.85rem;
     font-weight:800;
     letter-spacing:.15em;
@@ -185,17 +240,21 @@ img{max-width:100%;display:block}
 .hero h1{
     max-width:760px;
     margin:0;
+
     font-family:var(--font-display);
     font-size:clamp(3rem,5.5vw,5.6rem);
     line-height:.96;
     letter-spacing:-.055em;
 }
 
-.hero h1 span{color:#5da9ff}
+.hero h1 span{
+    color:#5da9ff;
+}
 
 .hero-text{
     max-width:650px;
     margin:28px 0 0;
+
     color:#d4dee7;
     font-size:1.03rem;
 }
@@ -211,23 +270,34 @@ img{max-width:100%;display:block}
     display:inline-flex;
     align-items:center;
     justify-content:center;
+
     min-height:46px;
     padding:0 19px;
+
     border-radius:30px;
+
     font-size:.8rem;
     font-weight:750;
     letter-spacing:.025em;
-    transition:transform .2s ease,background .2s ease,border-color .2s ease;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
 }
 
-.button:hover{transform:translateY(-2px)}
+.button:hover{
+    transform:translateY(-2px);
+}
 
 .button-primary{
     background:var(--blue);
     color:var(--navy);
 }
 
-.button-primary:hover{background:#65a9ff}
+.button-primary:hover{
+    background:#65a9ff;
+}
 
 .button-secondary{
     border:1px solid rgba(255,255,255,.38);
@@ -251,43 +321,65 @@ img{max-width:100%;display:block}
 
 .skills-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    /* 4 cartes réellement sur une ligne */
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
     gap:18px;
-    align-items:stretch;
+
+    width:100%;
 }
 
 .skill-card{
+    min-width:0;
     min-height:220px;
+
     padding:18px 20px 20px;
+
     border:1px solid var(--line);
     border-radius:22px;
+
     background:var(--white);
-    box-shadow:0 10px 28px rgba(7,26,45,.06);
+
+    box-shadow:
+        0 10px 28px rgba(7,26,45,.06);
+
     display:flex;
     flex-direction:column;
+
     overflow:hidden;
-    transition:transform .18s ease-out,box-shadow .25s ease;
-    will-change:transform;
+
+    transition:
+        transform .18s ease-out,
+        box-shadow .25s ease;
 }
 
 .skill-editorial{
-    width:100%;
+    width:calc(100% + 40px);
     height:92px;
+
     object-fit:cover;
+
     display:block;
-    margin:-18px 0 17px;
-    border-radius:18px 18px 0 0;
+
+    margin:-18px -20px 17px;
+
+    flex:0 0 auto;
 }
 
 .skill-card h2{
     margin:0 0 9px;
+
     font-size:1.05rem;
     line-height:1.25;
 }
 
 .skill-card p{
     margin:0;
+
     color:var(--slate);
+
     font-size:.82rem;
     line-height:1.5;
 }
@@ -304,16 +396,22 @@ img{max-width:100%;display:block}
 
 .section-heading{
     display:grid;
+
     grid-template-columns:1fr .7fr;
+
     gap:50px;
+
     align-items:end;
+
     margin-bottom:38px;
 }
 
 .section-heading h2,
 .profile-section h2{
     margin:0;
+
     font-family:var(--font-display);
+
     font-size:clamp(2rem,3vw,3rem);
     line-height:1;
     letter-spacing:-.045em;
@@ -321,40 +419,45 @@ img{max-width:100%;display:block}
 
 .section-heading>p{
     margin:0;
+
     color:var(--slate);
+
     font-size:.94rem;
 }
 
 
 /* =========================================================
-   PROJECT CONTENT
+   PROJECT CARD
 ========================================================= */
 
 .project-image{
     position:relative;
+
     height:205px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     overflow:hidden;
+
     color:var(--white);
 }
 
 .project-image img{
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
 
 .project-preview-link,
 .youtube-preview{
     width:100%;
-    cursor:pointer;
-    text-align:left;
-}
 
-.project-preview-link{
-    display:block;
+    cursor:pointer;
+
+    text-align:left;
 }
 
 .project-info{
@@ -363,144 +466,200 @@ img{max-width:100%;display:block}
 
 .project-type{
     margin:0 0 6px;
+
     color:var(--slate);
+
     font-size:.62rem;
     font-weight:800;
+
     letter-spacing:.09em;
     text-transform:uppercase;
 }
 
 .project-info h3{
     margin:0 0 7px;
+
     font-family:var(--font-display);
     font-size:1.08rem;
 }
 
 .project-info p:not(.project-type){
     margin:0;
+
     color:var(--slate);
+
     font-size:.79rem;
     line-height:1.45;
 }
 
 .project-link{
     display:inline-block;
+
     margin-top:11px;
+
     color:var(--navy);
+
     font-size:.72rem;
     font-weight:800;
 }
 
-.project-link:hover{color:var(--blue)}
+.project-link:hover{
+    color:var(--blue);
+}
 
 .project-link-button{
     padding:0;
+
     border:0;
+
     background:transparent;
+
     cursor:pointer;
+
     text-align:left;
 }
 
 .project-preview-label{
     position:absolute;
+
     left:18px;
     top:17px;
+
     padding:6px 9px;
+
     background:rgba(7,26,45,.74);
+
     border:1px solid rgba(255,255,255,.2);
+
     color:#fff;
+
     font-size:.62rem;
     font-weight:800;
+
     letter-spacing:.1em;
 }
 
 .play-badge{
     position:absolute;
+
     z-index:2;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
+
     width:52px;
     height:52px;
+
     display:grid;
     place-items:center;
+
     border:1px solid rgba(255,255,255,.65);
     border-radius:50%;
+
     background:rgba(7,26,45,.42);
+
     color:#fff;
+
     font-size:1rem;
 }
 
 .project-image:hover .play-badge{
-    transform:translate(-50%,-50%) scale(1.08);
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
+
     background:rgba(47,140,255,.75);
 }
 
 
-/* /* =========================================================
-   CARROUSEL — VERSION STABLE
-   Navigation uniquement par les flèches
-========================================================= */
-
 /* =========================================================
-   CARROUSEL — DESKTOP LARGE
+   CARROUSEL
+   Navigation par flèches uniquement
 ========================================================= */
 
-.carousel-wrapper {
-    position: relative;
+.carousel-wrapper{
+    position:relative;
 
-    width: calc(100% + 120px);
-    margin-left: -60px;
+    width:100%;
 
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
 
-    gap: 10px;
-
-    overflow: visible;
+    gap:18px;
 }
 
-.projects-carousel {
-    position: relative;
+.carousel-arrow{
+    flex:0 0 44px;
 
-    flex: 1 1 auto;
-    width: 100%;
+    width:44px;
+    height:44px;
 
-    min-width: 0;
+    display:grid;
+    place-items:center;
 
-    padding: 30px 0 55px;
+    border:1px solid var(--line);
+    border-radius:50%;
 
-    overflow: visible;
+    background:var(--white);
+    color:var(--navy);
 
-    perspective: 1400px;
+    font-size:1.8rem;
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+
+    z-index:50;
 }
 
-.carousel-track {
-    position: relative;
+.carousel-arrow:hover{
+    transform:translateY(-2px);
 
-    width: 100%;
-    min-height: 520px;
-
-    overflow: visible;
-
-    transform-style: preserve-3d;
+    background:var(--navy);
+    color:var(--white);
 }
 
-.carousel-arrow {
-    flex: 0 0 44px;
+.projects-carousel{
+    position:relative;
 
-    width: 44px;
-    height: 44px;
+    flex:1 1 auto;
 
-    position: relative;
-    z-index: 50;
+    /*
+       Le carrousel prend toute la largeur disponible.
+       Il ne provoque aucun débordement du body.
+    */
+    min-width:0;
+    width:100%;
+
+    overflow:hidden;
+
+    padding:35px 0 55px;
+
+    perspective:1400px;
+
+    touch-action:pan-y;
+
+    user-select:none;
+    -webkit-user-select:none;
 }
+
+.carousel-track{
+    position:relative;
+
+    display:block;
+
+    width:100%;
+
+    min-height:540px;
+
+    transform-style:preserve-3d;
 }
-
-
-/* =========================================================
-   CARTES
-========================================================= */
 
 .carousel-card{
     position:absolute;
@@ -510,6 +669,8 @@ img{max-width:100%;display:block}
 
     width:330px;
     min-height:470px;
+
+    margin:0;
 
     background:var(--white);
 
@@ -523,554 +684,40 @@ img{max-width:100%;display:block}
     transform-origin:center center;
 
     transition:
-        transform .48s cubic-bezier(.22,.61,.36,1),
-        opacity .4s ease,
-        filter .4s ease,
-        box-shadow .4s ease;
+        transform .55s cubic-bezier(.22,.61,.36,1),
+        opacity .45s ease,
+        filter .45s ease,
+        box-shadow .45s ease;
 
     user-select:none;
     -webkit-user-select:none;
 
-    will-change:
-        transform,
-        opacity,
-        filter;
-
-    /*
-     * Le JS contrôle les interactions.
-     */
+    will-change:transform,opacity,filter;
 }
 
-
-/* IMAGE */
-
 .carousel-card .project-image{
-    position:relative;
-
     width:100%;
     height:215px;
-
-    display:block;
-
-    overflow:hidden;
 }
 
 .carousel-card .project-image img{
     width:100%;
     height:100%;
-
     object-fit:cover;
 }
 
 
-/* =========================================================
-   CARTE CENTRALE
-========================================================= */
+/*
+   Important :
+   Les classes sont pilotées par le JS.
+   On ne définit PAS ici de transform concurrent.
+*/
 
 .carousel-card.is-active{
-
-    z-index:30;
-
-    opacity:1;
-
-    filter:none;
-
-    transform:
-        translate(-50%,-50%)
-        translateZ(45px)
-        scale(1.08);
-
     box-shadow:
-        0 26px 65px rgba(7,26,45,.20);
-
-    pointer-events:auto;
+        0 24px 60px rgba(7,26,45,.18);
 }
 
-
-/* =========================================================
-   CARTE GAUCHE
-========================================================= */
-
-.carousel-card.is-prev{
-
-    z-index:20;
-
-    opacity:.48;
-
-    filter:saturate(.75);
-
-    transform:
-        translate(-50%,-50%)
-        translate3d(-62%,0,-70px)
-        rotateY(10deg)
-        scale(.76);
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   CARTE DROITE
-========================================================= */
-
-.carousel-card.is-next{
-
-    z-index:20;
-
-    opacity:.48;
-
-    filter:saturate(.75);
-
-    transform:
-        translate(-50%,-50%)
-        translate3d(62%,0,-70px)
-        rotateY(-10deg)
-        scale(.76);
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   CARTES NON VISIBLES
-========================================================= */
-
-.carousel-card.is-hidden{
-
-    z-index:1;
-
-    opacity:0;
-
-    filter:blur(2px);
-
-    transform:
-        translate(-50%,-50%)
-        translateZ(-180px)
-        scale(.58);
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   CONTENU DES CARTES
-========================================================= */
-
-.carousel-card .project-info{
-    padding:18px 20px 20px;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:950px){
-
-    .carousel-card{
-        width:330px;
-    }
-
-    .carousel-card.is-active{
-        transform:
-            translate(-50%,-50%)
-            translateZ(35px)
-            scale(1.04);
-    }
-
-    .carousel-card.is-prev{
-
-        transform:
-            translate(-50%,-50%)
-            translate3d(-58%,0,-70px)
-            rotateY(8deg)
-            scale(.70);
-
-        opacity:.30;
-    }
-
-    .carousel-card.is-next{
-
-        transform:
-            translate(-50%,-50%)
-            translate3d(58%,0,-70px)
-            rotateY(-8deg)
-            scale(.70);
-
-        opacity:.30;
-    }
-}
-
-
-@/* =========================================================
-   RESPONSIVE — SMARTPHONE
-========================================================= */
-
-@@@media (max-width: 760px) {
-
-    /* =====================================================
-       CARROUSEL MOBILE — ZONE PLEINE LARGEUR CENTRÉE
-    ===================================================== */
-
-    .projects-section {
-        overflow: visible;
-    }
-
-    .projects-section .container {
-        overflow: visible;
-    }
-
-    .carousel-wrapper {
-        position: relative;
-        width: 100vw;
-        max-width: 100vw;
-
-        /* sort de la largeur du container */
-        margin-left: 50%;
-        transform: translateX(-50%);
-
-        display: flex;
-        align-items: center;
-        gap: 0;
-
-        overflow: visible;
-    }
-
-    .projects-carousel {
-        position: relative;
-        flex: 1 1 auto;
-
-        width: calc(100vw - 76px);
-        max-width: calc(100vw - 76px);
-
-        min-width: 0;
-
-        padding: 18px 0 45px;
-
-        overflow: visible;
-        perspective: 1400px;
-    }
-
-    .carousel-track {
-        position: relative;
-        width: 100%;
-        min-height: 455px;
-
-        overflow: visible;
-        transform-style: preserve-3d;
-    }
-
-    .carousel-card {
-        width: 220px;
-        max-width: 220px;
-    }
-
-    .carousel-card.is-active {
-        transform:
-            translate(-50%, -50%)
-            translate3d(0,0,55px)
-            scale(0.92);
-    }
-
-    .carousel-card.is-prev {
-        transform:
-            translate(-50%, -50%)
-            translate3d(-72%,0,-80px)
-            rotateY(10deg)
-            scale(.68);
-
-        opacity: .55;
-    }
-
-    .carousel-card.is-next {
-        transform:
-            translate(-50%, -50%)
-            translate3d(72%,0,-80px)
-            rotateY(-10deg)
-            scale(.68);
-
-        opacity: .55;
-    }
-
-    .carousel-card.is-hidden {
-        opacity: 0;
-    }
-
-    .carousel-arrow {
-        position: relative;
-        z-index: 50;
-        flex: 0 0 38px;
-        width: 38px;
-        height: 38px;
-    }
-}
-
-    /* -----------------------------------------------------
-       HERO
-    ----------------------------------------------------- */
-
-    .hero{
-        min-height:680px;
-        padding:74px 0;
-    }
-
-    .hero-bg{
-        background:
-            linear-gradient(
-                180deg,
-                rgba(7,26,45,.97) 0%,
-                rgba(7,26,45,.84) 55%,
-                rgba(7,26,45,.93) 100%
-            ),
-            url("../../images/hero-evenement-tourisme.png")
-            center/cover no-repeat;
-    }
-
-    .hero h1{
-        font-size:clamp(2.65rem,11vw,4.5rem);
-    }
-
-    .hero-text{
-        font-size:.94rem;
-    }
-
-
-    /* -----------------------------------------------------
-       SECTIONS
-    ----------------------------------------------------- */
-
-    .skills-intro,
-    .projects-section,
-    .profile-section,
-    .contact-section{
-        padding:68px 0;
-    }
-
-    .skills-grid{
-        grid-template-columns:1fr;
-    }
-
-
-    /* /* =====================================================
-   CARROUSEL SMARTPHONE
-   Cartes indépendantes de la largeur entre les flèches
-===================================================== */
-
-.carousel-wrapper{
-    position:relative;
-    width:100%;
-    max-width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:0;
-}
-
-
-/* -----------------------------------------------------
-   ZONE DU CARROUSEL
------------------------------------------------------ */
-
-.projects-carousel{
-    position:relative;
-
-    /*
-       La zone centrale occupe toute la largeur.
-       Les cartes ne sont PAS dimensionnées par
-       l'espace disponible entre les flèches.
-    */
-    flex:1 1 100%;
-    width:100%;
-    min-width:0;
-
-    overflow:visible;
-
-    padding:20px 0 38px;
-
-    perspective:1200px;
-    touch-action:pan-y;
-}
-
-
-/* -----------------------------------------------------
-   TRACK
------------------------------------------------------ */
-
-.carousel-track{
-    position:relative;
-    width:100%;
-    min-height:430px;
-
-    overflow:visible;
-}
-
-
-/* -----------------------------------------------------
-   CARTES
-   Environ moitié de la largeur d'un smartphone
------------------------------------------------------ */
-
-.carousel-card{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:52vw;
-    max-width:210px;
-    min-width:180px;
-
-    min-height:380px;
-
-    border-radius:18px;
-}
-
-
-/* -----------------------------------------------------
-   CARTE CENTRALE
------------------------------------------------------ */
-
-.carousel-card.is-active{
-    z-index:30;
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-
-    opacity:1;
-    filter:none;
-
-    pointer-events:auto;
-}
-
-
-/* -----------------------------------------------------
-   CARTE GAUCHE
------------------------------------------------------ */
-
-.carousel-card.is-prev{
-    z-index:20;
-
-    transform:
-        translate(-50%,-50%)
-        translate3d(-105%,0,-100px)
-        rotateY(8deg)
-        scale(.72);
-
-    opacity:.20;
-    pointer-events:none;
-}
-
-
-/* -----------------------------------------------------
-   CARTE DROITE
------------------------------------------------------ */
-
-.carousel-card.is-next{
-    z-index:20;
-
-    transform:
-        translate(-50%,-50%)
-        translate3d(105%,0,-100px)
-        rotateY(-8deg)
-        scale(.72);
-
-    opacity:.20;
-    pointer-events:none;
-}
-
-
-/* -----------------------------------------------------
-   AUTRES CARTES
------------------------------------------------------ */
-
-.carousel-card.is-hidden{
-    z-index:1;
-
-    opacity:0;
-    pointer-events:none;
-}
-
-
-/* -----------------------------------------------------
-   IMAGE
------------------------------------------------------ */
-
-.carousel-card .project-image{
-    height:150px;
-}
-
-
-/* -----------------------------------------------------
-   CONTENU
------------------------------------------------------ */
-
-.carousel-card .project-info{
-    padding:14px 15px 16px;
-}
-
-.carousel-card .project-info h3{
-    font-size:.95rem;
-}
-
-.carousel-card .project-info p:not(.project-type){
-    font-size:.72rem;
-    line-height:1.4;
-}
-
-.carousel-card .project-type{
-    font-size:.58rem;
-}
-
-.carousel-card .project-link{
-    font-size:.67rem;
-}
-
-
-/* -----------------------------------------------------
-   FLÈCHES
------------------------------------------------------ */
-
-.carousel-arrow{
-    position:relative;
-    z-index:100;
-
-    flex:0 0 32px;
-
-    width:32px;
-    height:32px;
-
-    padding:0;
-
-    display:grid;
-    place-items:center;
-
-    font-size:1.35rem;
-}
-
-
-    /* -----------------------------------------------------
-       FOOTER
-    ----------------------------------------------------- */
-
-    .footer-content{
-        flex-direction:column;
-        gap:7px;
-    }
-
-
-    /* -----------------------------------------------------
-       VIDEO
-    ----------------------------------------------------- */
-
-    .video-modal{
-        padding:16px;
-    }
-
-    .video-modal-close{
-        top:-44px;
-    }
-}
 
 /* =========================================================
    PROFILE
@@ -1083,13 +730,17 @@ img{max-width:100%;display:block}
 
 .profile-grid{
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:80px;
 }
 
 .profile-text{
     max-width:600px;
+
     color:var(--slate);
+
     font-size:.96rem;
 }
 
@@ -1101,14 +752,19 @@ img{max-width:100%;display:block}
 .profile-skills{
     display:flex;
     flex-wrap:wrap;
+
     gap:7px;
+
     margin-top:26px;
 }
 
 .profile-skills span{
     padding:6px 9px;
+
     border:1px solid var(--line);
+
     color:var(--navy);
+
     font-size:.67rem;
     font-weight:650;
 }
@@ -1120,6 +776,7 @@ img{max-width:100%;display:block}
 
 .tools-section{
     padding:62px 0;
+
     background:var(--navy);
     color:var(--white);
 }
@@ -1132,10 +789,15 @@ img{max-width:100%;display:block}
 
 .tools-list span{
     padding:12px 18px;
+
     border-radius:30px;
+
     background:rgba(255,255,255,.06);
+
     border:1px solid rgba(255,255,255,.18);
+
     color:#dce7ef;
+
     font-size:.8rem;
     font-weight:600;
 }
@@ -1147,15 +809,21 @@ img{max-width:100%;display:block}
 
 .contact-section{
     padding:88px 0;
+
     background:var(--navy-light);
+
     color:var(--white);
 }
 
-.contact-content{max-width:850px}
+.contact-content{
+    max-width:850px;
+}
 
 .contact-content h2{
     margin:0;
+
     font-family:var(--font-display);
+
     font-size:clamp(2.5rem,5vw,4.6rem);
     line-height:1;
     letter-spacing:-.05em;
@@ -1163,15 +831,20 @@ img{max-width:100%;display:block}
 
 .contact-content>p:not(.eyebrow){
     max-width:650px;
+
     margin:22px 0 0;
+
     color:#d0dae2;
+
     font-size:.98rem;
 }
 
 .contact-actions{
     display:flex;
     flex-wrap:wrap;
+
     gap:10px;
+
     margin-top:28px;
 }
 
@@ -1198,57 +871,80 @@ img{max-width:100%;display:block}
 .video-modal{
     position:fixed;
     inset:0;
+
     z-index:3000;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:24px;
 }
 
-.video-modal.is-open{display:flex}
+.video-modal.is-open{
+    display:flex;
+}
 
 .video-modal-backdrop{
     position:absolute;
     inset:0;
+
     background:rgba(2,9,16,.88);
+
     backdrop-filter:blur(6px);
 }
 
 .video-modal-dialog{
     position:relative;
     z-index:1;
+
     width:min(100%,980px);
 }
 
 .video-frame{
     aspect-ratio:16/9;
+
     background:#000;
-    box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45);
 }
 
 .video-frame iframe{
     width:100%;
     height:100%;
+
     border:0;
 }
 
 .video-modal-close{
     position:absolute;
+
     z-index:2;
+
     right:0;
     top:-46px;
+
     width:38px;
     height:38px;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.1);
+
     color:#fff;
+
     font-size:1.6rem;
+
     cursor:pointer;
 }
 
 .video-modal-dialog h2{
     margin:12px 0 0;
+
     color:#fff;
+
     font-size:.85rem;
     font-weight:600;
 }
@@ -1260,22 +956,29 @@ img{max-width:100%;display:block}
 
 .site-footer{
     padding:25px 0;
+
     background:#04111f;
+
     color:#9caab6;
+
     font-size:.68rem;
 }
 
 .footer-content{
     display:flex;
+
     justify-content:space-between;
+
     gap:25px;
 }
 
-.footer-content p{margin:0}
+.footer-content p{
+    margin:0;
+}
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLET
 ========================================================= */
 
 @media(max-width:950px){
@@ -1286,7 +989,8 @@ img{max-width:100%;display:block}
     }
 
     .skills-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
     }
 
     .section-heading{
@@ -1299,54 +1003,64 @@ img{max-width:100%;display:block}
         gap:42px;
     }
 
-    .carousel-card{width:330px}
-
-    .carousel-card.is-left{
-        transform:
-            translate(-50%,-50%)
-            translate3d(-48%,0,-80px)
-            rotateY(8deg)
-            scale(.72);
-    }
-
-    .carousel-card.is-right{
-        transform:
-            translate(-50%,-50%)
-            translate3d(48%,0,-80px)
-            rotateY(-8deg)
-            scale(.72);
+    .carousel-card{
+        width:330px;
     }
 }
 
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media(max-width:760px){
 
     .container{
-        width:min(100% - 32px,var(--max-width));
+        width:calc(100% - 32px);
+        max-width:none;
     }
 
-    .nav-container{min-height:68px}
+    .nav-container{
+        min-height:68px;
+    }
 
-    .menu-toggle{display:block}
+    .menu-toggle{
+        display:block;
+    }
 
     .main-nav{
         position:absolute;
+
         top:68px;
         left:0;
         right:0;
+
         display:none;
+
         flex-direction:column;
         align-items:stretch;
+
         padding:15px 16px 20px;
+
         background:var(--navy);
+
         border-top:1px solid var(--dark-line);
     }
 
-    .main-nav.is-open{display:flex}
+    .main-nav.is-open{
+        display:flex;
+    }
 
-    .main-nav a{padding:10px 4px}
+    .main-nav a{
+        padding:10px 4px;
+    }
 
-    .nav-cv{text-align:center}
+    .nav-cv{
+        text-align:center;
+    }
+
+
+    /* HERO */
 
     .hero{
         min-height:680px;
@@ -1361,14 +1075,20 @@ img{max-width:100%;display:block}
                 rgba(7,26,45,.84) 55%,
                 rgba(7,26,45,.93) 100%
             ),
-            url("../../images/hero-evenement-tourisme.png") center/cover no-repeat;
+            url("../../images/hero-evenement-tourisme.png")
+            center / cover no-repeat;
     }
 
     .hero h1{
         font-size:clamp(2.65rem,11vw,4.5rem);
     }
 
-    .hero-text{font-size:.94rem}
+    .hero-text{
+        font-size:.94rem;
+    }
+
+
+    /* SECTIONS */
 
     .skills-intro,
     .projects-section,
@@ -1377,136 +1097,172 @@ img{max-width:100%;display:block}
         padding:68px 0;
     }
 
+
+    /* SAVOIR-FAIRE */
+
     .skills-grid{
         grid-template-columns:1fr;
+        gap:16px;
     }
 
-    .carousel-wrapper{gap:8px}
+    .skill-card{
+        width:100%;
+    }
+
+
+    /* =====================================================
+       CARROUSEL MOBILE
+       IMPORTANT :
+       le carrousel reste DANS la largeur de son conteneur.
+       Il ne déborde plus à droite.
+    ===================================================== */
+
+    .carousel-wrapper{
+        width:100%;
+
+        gap:7px;
+    }
 
     .carousel-arrow{
-        flex-basis:38px;
+        flex:0 0 38px;
+
         width:38px;
         height:38px;
     }
 
     .projects-carousel{
-        padding-top:18px;
+        flex:1 1 auto;
+
+        min-width:0;
+        width:100%;
+
+        overflow:hidden;
+
+        padding:
+            25px 0
+            45px;
+
+        perspective:1000px;
     }
 
     .carousel-track{
-        min-height:455px;
+        width:100%;
+        min-height:480px;
     }
+
+    /*
+       Carte mobile :
+       elle est volontairement plus petite.
+       Le JS conserve son positionnement 3D.
+    */
 
     .carousel-card{
-        width:min(78vw,350px);
-    }
+        width:min(72vw,285px);
 
-    .carousel-card.is-center{
-        transform:
-            translate(-50%,-50%)
-            scale(1.04);
-    }
+        min-height:430px;
 
-    .carousel-card.is-left{
-        transform:
-            translate(-50%,-50%)
-            translate3d(-64%,0,-100px)
-            rotateY(8deg)
-            scale(.64);
-        opacity:.17;
-    }
-
-    .carousel-card.is-right{
-        transform:
-            translate(-50%,-50%)
-            translate3d(64%,0,-100px)
-            rotateY(-8deg)
-            scale(.64);
-        opacity:.17;
-    }
-
-    .carousel-card.is-hidden{
-        opacity:0;
+        border-radius:22px;
     }
 
     .carousel-card .project-image{
-        height:220px;
+        height:190px;
     }
+
+    .carousel-card .project-info{
+        padding:16px 17px 18px;
+    }
+
+    .carousel-card .project-info h3{
+        font-size:1rem;
+    }
+
+    .carousel-card .project-info p:not(.project-type){
+        font-size:.76rem;
+    }
+
+
+    /* PROFILE */
+
+    .profile-grid{
+        gap:35px;
+    }
+
+
+    /* FOOTER */
 
     .footer-content{
         flex-direction:column;
         gap:7px;
     }
 
-    .video-modal{padding:16px}
 
-    .video-modal-close{top:-44px}
+    /* VIDEO */
+
+    .video-modal{
+        padding:16px;
+    }
+
+    .video-modal-close{
+        top:-44px;
+    }
 }
 
 
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:420px){
+
+    .container{
+        width:calc(100% - 24px);
+    }
+
+    .carousel-wrapper{
+        gap:4px;
+    }
+
+    .carousel-arrow{
+        flex-basis:34px;
+
+        width:34px;
+        height:34px;
+
+        font-size:1.5rem;
+    }
+
+    .projects-carousel{
+        padding-left:0;
+        padding-right:0;
+    }
+
+    .carousel-card{
+        width:70vw;
+        max-width:255px;
+
+        min-height:410px;
+    }
+
+    .carousel-card .project-image{
+        height:175px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
 @media(prefers-reduced-motion:reduce){
 
-    html{scroll-behavior:auto}
+    html{
+        scroll-behavior:auto;
+    }
 
     *,
     *::before,
     *::after{
         transition:none!important;
         animation:none!important;
-    }
-
-    .hero-bg,
-    .skill-card{
-        transform:none!important;
-    }
-}
-/* =========================================================
-   CORRECTION MOBILE — EMPÊCHER LE DÉBORDEMENT DU CARROUSEL
-========================================================= */
-
-@media (max-width: 760px) {
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    .projects-section {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .projects-section .container {
-        width: calc(100% - 32px);
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .carousel-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .projects-carousel {
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .carousel-track {
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .carousel-card {
-        max-width: 210px;
     }
 }
