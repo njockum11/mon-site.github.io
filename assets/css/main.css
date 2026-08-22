@@ -717,50 +717,104 @@ img{max-width:100%;display:block}
    RESPONSIVE — SMARTPHONE
 ========================================================= */
 
-@@media(max-width:760px){
+@@@media (max-width: 760px) {
 
-    .carousel-wrapper{
-        position:relative;
-        width:100%;
-        display:block;
+    /* =====================================================
+       CARROUSEL MOBILE — ZONE PLEINE LARGEUR CENTRÉE
+    ===================================================== */
+
+    .projects-section {
+        overflow: visible;
     }
 
-    .projects-carousel{
-        position:relative;
-        width:100%;
-        max-width:100%;
-        overflow:hidden;
-        padding:20px 0 40px;
-        perspective:1200px;
+    .projects-section .container {
+        overflow: visible;
     }
 
-    .carousel-track{
-        width:100%;
-        min-height:455px;
+    .carousel-wrapper {
+        position: relative;
+        width: 100vw;
+        max-width: 100vw;
+
+        /* sort de la largeur du container */
+        margin-left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        gap: 0;
+
+        overflow: visible;
     }
 
-    .carousel-card{
-        width:240px;
-        min-height:400px;
+    .projects-carousel {
+        position: relative;
+        flex: 1 1 auto;
+
+        width: calc(100vw - 76px);
+        max-width: calc(100vw - 76px);
+
+        min-width: 0;
+
+        padding: 18px 0 45px;
+
+        overflow: visible;
+        perspective: 1400px;
     }
 
-    .carousel-arrow{
-        position:absolute;
-        top:50%;
-        z-index:100;
-        width:36px;
-        height:36px;
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        min-height: 455px;
+
+        overflow: visible;
+        transform-style: preserve-3d;
     }
 
-    .carousel-prev{
-        left:0;
+    .carousel-card {
+        width: 220px;
+        max-width: 220px;
     }
 
-    .carousel-next{
-        right:0;
+    .carousel-card.is-active {
+        transform:
+            translate(-50%, -50%)
+            translate3d(0,0,55px)
+            scale(0.92);
+    }
+
+    .carousel-card.is-prev {
+        transform:
+            translate(-50%, -50%)
+            translate3d(-72%,0,-80px)
+            rotateY(10deg)
+            scale(.68);
+
+        opacity: .55;
+    }
+
+    .carousel-card.is-next {
+        transform:
+            translate(-50%, -50%)
+            translate3d(72%,0,-80px)
+            rotateY(-10deg)
+            scale(.68);
+
+        opacity: .55;
+    }
+
+    .carousel-card.is-hidden {
+        opacity: 0;
+    }
+
+    .carousel-arrow {
+        position: relative;
+        z-index: 50;
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
     }
 }
-
 
     /* -----------------------------------------------------
        HERO
