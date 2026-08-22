@@ -442,70 +442,59 @@ img{max-width:100%;display:block}
    Navigation uniquement par les flèches
 ========================================================= */
 
-.carousel-wrapper{
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:18px;
+/* =========================================================
+   CARROUSEL — DESKTOP LARGE
+========================================================= */
+
+.carousel-wrapper {
+    position: relative;
+
+    width: calc(100% + 120px);
+    margin-left: -60px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    overflow: visible;
 }
 
-.carousel-arrow{
-    flex:0 0 44px;
-    width:44px;
-    height:44px;
+.projects-carousel {
+    position: relative;
 
-    display:grid;
-    place-items:center;
+    flex: 1 1 auto;
+    width: 100%;
 
-    border:1px solid var(--line);
-    border-radius:50%;
+    min-width: 0;
 
-    background:var(--white);
-    color:var(--navy);
+    padding: 30px 0 55px;
 
-    font-size:1.8rem;
-    line-height:1;
+    overflow: visible;
 
-    cursor:pointer;
-
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        color .2s ease;
-
-    z-index:100;
+    perspective: 1400px;
 }
 
-.carousel-arrow:hover{
-    transform:translateY(-2px);
-    background:var(--navy);
-    color:var(--white);
+.carousel-track {
+    position: relative;
+
+    width: 100%;
+    min-height: 520px;
+
+    overflow: visible;
+
+    transform-style: preserve-3d;
 }
 
-.projects-carousel{
-    position:relative;
-    flex:1;
-    width:100%;
+.carousel-arrow {
+    flex: 0 0 44px;
 
-    overflow:hidden;
+    width: 44px;
+    height: 44px;
 
-    padding:30px 0 45px;
-
-    perspective:1400px;
-
-    user-select:none;
-    -webkit-user-select:none;
-
-    touch-action:pan-y;
+    position: relative;
+    z-index: 50;
 }
-
-.carousel-track{
-    position:relative;
-
-    width:100%;
-    min-height:520px;
-
-    transform-style:preserve-3d;
 }
 
 
