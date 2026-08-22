@@ -1246,6 +1246,13 @@ img{
     .carousel-card .project-image{
         height:175px;
     }
+
+   .carousel{
+    width:80%;
+    max-width:300px;
+    margin-left:auto;
+    margin-right:auto;
+}
 }
 
 
