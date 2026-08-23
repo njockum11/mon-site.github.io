@@ -150,25 +150,30 @@ document.addEventListener("DOMContentLoaded", function () {
        MINIATURES YOUTUBE EXISTANTES
     ========================================================= */
 
-    document
-        .querySelectorAll(".youtube-preview")
-        .forEach(function (preview) {
+   document.querySelectorAll('.youtube-preview, .video-preview').forEach(button => {
 
-            const id = preview.dataset.youtube;
+    button.addEventListener('click', () => {
 
-            if (!id) return;
+        const youtubeId = button.dataset.youtube;
+        const vimeoId = button.dataset.vimeo;
+        const title = button.dataset.title || 'Vidéo';
 
-            preview.style.backgroundImage =
-                'linear-gradient(135deg, rgba(7,26,45,.12), rgba(7,26,45,.68)), ' +
-                'url("https://img.youtube.com/vi/' +
-                encodeURIComponent(id) +
-                '/hqdefault.jpg")';
+        let embedUrl = '';
 
-            preview.style.backgroundSize = "cover";
-            preview.style.backgroundPosition = "center";
+        if (vimeoId) {
+            embedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
+        } else if (youtubeId) {
+            embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+        } else {
+            return;
+        }
 
-        });
+        // Le reste de ton système de fenêtre vidéo
+        // doit utiliser embedUrl comme source de l'iframe.
 
+    });
+
+});
 
     /* =========================================================
        CARROUSEL
