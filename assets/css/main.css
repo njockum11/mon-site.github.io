@@ -663,7 +663,7 @@ img{
 
 .carousel-card{
     position:absolute;
-
+padding:10px;
     left:50%;
     top:50%;
 
@@ -697,9 +697,14 @@ img{
 
 .carousel-card .project-image{
     width:100%;
-    height:215px;
-}
+    height:205px;
 
+    border-radius:16px;
+    overflow:hidden;
+}
+.carousel-card .project-info{
+    padding:16px 8px 8px;
+}
 .carousel-card .project-image img{
     width:100%;
     height:100%;
@@ -1159,7 +1164,7 @@ img{
         */
         width:min(64vw,255px);
         max-width:255px;
-
+padding:8px;
         min-height:390px;
 
         border-radius:20px;
@@ -1167,13 +1172,13 @@ img{
         overflow:hidden;
     }
 
-    .carousel-card .project-image{
-        width:100%;
+   .carousel-card .project-image{
         height:160px;
+        border-radius:15px;
     }
 
-    .carousel-card .project-info{
-        padding:14px 15px 16px;
+     .carousel-card .project-info{
+        padding:14px 6px 7px;
     }
 
     .carousel-card .project-info h3{
@@ -1218,17 +1223,19 @@ img{
     .carousel-card{
         width:min(62vw,235px);
         max-width:235px;
-
+padding:7px;
         min-height:370px;
         border-radius:18px;
     }
 
-    .carousel-card .project-image{
+     .carousel-card .project-image{
         height:145px;
+        border-radius:14px;
     }
 
     .carousel-card .project-info{
-        padding:13px 14px 15px;
+        padding:13px 6px 6px;
+    }
     }
 
     .carousel-card .project-info h3{
