@@ -87,7 +87,72 @@ function openVimeo(videoId, videoTitle) {
 
         document.body.style.overflow = "";
     }
+/* =========================================================
+   RÉCUPÉRATION AUTOMATIQUE DES VIGNETTES VIDÉO
+   YouTube + Vimeo
+========================================================= */
 
+function loadVideoThumbnails() {
+
+    document
+        .querySelectorAll(".youtube-preview, .video-preview")
+        .forEach(function (button) {
+
+            let thumbnailUrl = "";
+
+            /* YouTube */
+            if (button.dataset.youtube) {
+
+                thumbnailUrl =
+                    "https://img.youtube.com/vi/" +
+                    encodeURIComponent(button.dataset.youtube) +
+                    "/hqdefault.jpg";
+            }
+
+            /* Vimeo */
+            else if (button.dataset.vimeo) {
+
+                thumbnailUrl =
+                    "https://vumbnail.com/" +
+                    encodeURIComponent(button.dataset.vimeo) +
+                    ".jpg";
+            }
+
+            if (!thumbnailUrl) return;
+
+
+            /* Évite de créer deux images */
+            if (button.querySelector(".video-thumbnail")) return;
+
+
+            const image =
+                document.createElement("img");
+
+            image.className = "video-thumbnail";
+
+            image.src = thumbnailUrl;
+
+            image.alt =
+                button.dataset.title || "Aperçu vidéo";
+
+            image.loading = "lazy";
+
+
+            /*
+             * L'image est placée en premier
+             * pour rester derrière le bouton lecture.
+             */
+            button.insertBefore(
+                image,
+                button.firstChild
+            );
+
+        });
+}
+
+
+/* Lancement après chargement du DOM */
+loadVideoThumbnails();
 
     /*
      * TEASERS EXISTANTS
