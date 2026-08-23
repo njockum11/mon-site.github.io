@@ -1134,6 +1134,7 @@ padding:10px;
     .skills-grid{
         grid-template-columns:1fr;
         gap:16px;
+          background:#071a2d;
     }
 
     .skill-card{
@@ -1370,17 +1371,17 @@ padding:7px;
 }
 
 .skill-card{
-    background:#071a2d;
-    color:#ffffff;
-    border-color:rgba(255,255,255,.10);
+    background:#f7f8fa;
+    color:#071a2d;
+    border-color:rgba(255,255,255,.12);
 }
 
 .skill-card h3{
-    color:#ffffff;
+    color:#071a2d;
 }
 
 .skill-card p{
-    color:#b9c5cf;
+    color:#5e6d7b;
 }
 
 .skill-card .skill-editorial{
