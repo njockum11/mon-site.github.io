@@ -52,7 +52,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.style.overflow = "hidden";
     }
+function openVimeo(videoId, videoTitle) {
 
+    if (!modal || !frame || !videoId) return;
+
+    if (modalTitle) {
+        modalTitle.textContent =
+            videoTitle || "Vidéo";
+    }
+
+    frame.src =
+        "https://player.vimeo.com/video/" +
+        encodeURIComponent(videoId) +
+        "?autoplay=1";
+
+    frame.title =
+        videoTitle || "Vidéo";
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+}
 
     function closeVideo() {
 
@@ -73,25 +94,41 @@ document.addEventListener("DOMContentLoaded", function () {
      *
      * Cette partie reste volontairement inchangée.
      */
-    document
-        .querySelectorAll(".youtube-preview, .youtube-trigger")
-        .forEach(function (trigger) {
+document
+    .querySelectorAll(".youtube-preview, .youtube-trigger, .video-preview")
+    .forEach(function (trigger) {
 
-            trigger.addEventListener("click", function (event) {
+        trigger.addEventListener("click", function (event) {
 
-                if (trigger.dataset.youtube) {
+            event.preventDefault();
 
-                    event.preventDefault();
+            const title =
+                trigger.dataset.title || "Vidéo";
 
-                    openVideo(
-                        trigger.dataset.youtube,
-                        trigger.dataset.title || "Vidéo"
-                    );
-                }
+            /* Vimeo */
+            if (trigger.dataset.vimeo) {
 
-            });
+                openVimeo(
+                    trigger.dataset.vimeo,
+                    title
+                );
+
+                return;
+            }
+
+            /* YouTube */
+            if (trigger.dataset.youtube) {
+
+                openVideo(
+                    trigger.dataset.youtube,
+                    title
+                );
+
+            }
 
         });
+
+    });
 
 
     /* =========================================================
@@ -146,34 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =========================================================
-       MINIATURES YOUTUBE EXISTANTES
-    ========================================================= */
-
-   document.querySelectorAll('.youtube-preview, .video-preview').forEach(button => {
-
-    button.addEventListener('click', () => {
-
-        const youtubeId = button.dataset.youtube;
-        const vimeoId = button.dataset.vimeo;
-        const title = button.dataset.title || 'Vidéo';
-
-        let embedUrl = '';
-
-        if (vimeoId) {
-            embedUrl = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
-        } else if (youtubeId) {
-            embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
-        } else {
-            return;
-        }
-
-        // Le reste de ton système de fenêtre vidéo
-        // doit utiliser embedUrl comme source de l'iframe.
-
-    });
-
-});
+ 
 
     /* =========================================================
        CARROUSEL
