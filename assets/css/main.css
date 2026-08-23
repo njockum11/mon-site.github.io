@@ -383,7 +383,13 @@ img{
     font-size:.82rem;
     line-height:1.5;
 }
+body{
+    background:#f5f6f4;
+}
 
+.skills-section{
+    background:#071a2d;
+}
 
 /* =========================================================
    PROJECTS
