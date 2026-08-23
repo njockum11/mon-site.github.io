@@ -1368,3 +1368,21 @@ padding:7px;
     position:absolute;
     z-index:10;
 }
+
+.skill-card{
+    background:#071a2d;
+    color:#ffffff;
+    border-color:rgba(255,255,255,.10);
+}
+
+.skill-card h3{
+    color:#ffffff;
+}
+
+.skill-card p{
+    color:#b9c5cf;
+}
+
+.skill-card .skill-editorial{
+    background:transparent;
+}
