@@ -1246,47 +1246,51 @@ img{
 
 @media(max-width:420px){
 
-    .container{
-        width:calc(100% - 24px);
-    }
-
     .carousel-wrapper{
-        gap:4px;
+        gap:3px;
     }
 
     .carousel-arrow{
-        flex-basis:34px;
-
-        width:34px;
-        height:34px;
-
-        font-size:1.5rem;
+        flex:0 0 32px;
+        width:32px;
+        height:32px;
+        font-size:1.35rem;
     }
 
     .projects-carousel{
-        padding-left:0;
-        padding-right:0;
+        width:100%;
+        max-width:100%;
+        padding:18px 0 35px;
+    }
+
+    .carousel-track{
+        min-height:400px;
     }
 
     .carousel-card{
-        width:70vw;
-        max-width:255px;
+        width:min(62vw,235px);
+        max-width:235px;
 
-        min-height:410px;
+        min-height:370px;
+        border-radius:18px;
     }
 
     .carousel-card .project-image{
-        height:175px;
+        height:145px;
     }
 
-   .carousel{
-    width:80%;
-    max-width:300px;
-    margin-left:auto;
-    margin-right:auto;
-}
-}
+    .carousel-card .project-info{
+        padding:13px 14px 15px;
+    }
 
+    .carousel-card .project-info h3{
+        font-size:.9rem;
+    }
+
+    .carousel-card .project-info p:not(.project-type){
+        font-size:.69rem;
+    }
+}
 
 /* =========================================================
    ACCESSIBILITY
